@@ -1,22 +1,26 @@
 /**
- * Navigation Data
+ * Navigation Data - Bilingual
  * Diamond Group Website
  */
 
 export const navigationLinks = {
-  left: [
-    { label: 'Tentang Kami', href: '/tentang-kami' },
+  id: [
+    { label: 'Profil', href: '/tentang-kami' },
     { label: 'Proyek', href: '/proyek' },
-  ],
-  right: [
     { label: 'Berita', href: '#berita' },
     { label: 'Kontak', href: '/kontak' },
+  ],
+  en: [
+    { label: 'Profile', href: '/tentang-kami' },
+    { label: 'Projects', href: '/proyek' },
+    { label: 'News', href: '#berita' },
+    { label: 'Contact', href: '/kontak' },
   ]
 }
 
 export const footerLinks = {
   company: [
-    { label: 'Tentang Diamond Group', href: '/tentang-kami' },
+    { label: 'Profil Diamond Group', href: '/tentang-kami' },
     { label: 'Visi & Misi', href: '/tentang-kami#visi-misi' },
     { label: 'Manajemen', href: '#' },
     { label: 'Karir', href: '#' },

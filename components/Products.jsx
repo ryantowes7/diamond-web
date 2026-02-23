@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Home, Maximize, Bed, Bath, CheckCircle } from 'lucide-react'
+import { Home, Maximize, Bed, Bath, CheckCircle, TrendingUp } from 'lucide-react'
 import { productTypes } from '@/data/products'
 import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
@@ -22,7 +22,7 @@ export default function Products() {
             Tipe Hunian
           </h2>
           <p className="text-lg lg:text-xl text-gray-600 max-w-2xl mx-auto">
-            Pilihan rumah dengan berbagai ukuran dan desain untuk memenuhi kebutuhan keluarga Anda
+            Pilihan hunian berkualitas untuk setiap kebutuhan dan budget keluarga Indonesia
           </p>
         </motion.div>
 
@@ -36,14 +36,14 @@ export default function Products() {
               viewport={{ once: true, margin: '-100px' }}
               transition={{ duration: 0.8 }}
             >
-              <div className={`grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center ${
+              <div className={`grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start ${
                 index % 2 === 0 ? '' : 'lg:grid-flow-dense'
               }`}>
-                {/* Image */}
+                {/* Image - Same height as content */}
                 <div className={`relative ${
                   index % 2 === 0 ? '' : 'lg:col-start-2'
                 }`}>
-                  <div className="relative rounded-3xl overflow-hidden shadow-2xl group aspect-[4/3]">
+                  <div className="relative rounded-3xl overflow-hidden shadow-2xl group h-full">
                     <img
                       src={product.image}
                       alt={product.name}
@@ -124,7 +124,7 @@ export default function Products() {
                   </div>
 
                   {/* Facilities */}
-                  <div className="mb-8">
+                  <div className="mb-6">
                     <h4 className="text-sm font-semibold text-gray-700 mb-3">Fasilitas:</h4>
                     <div className="flex flex-wrap gap-2">
                       {product.specs.facilities.map((facility, idx) => (
@@ -134,6 +134,19 @@ export default function Products() {
                         >
                           <CheckCircle className="text-orange-600" size={16} />
                           {facility}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Benefits/Keunggulan */}
+                  <div className="mb-8">
+                    <h4 className="text-sm font-semibold text-gray-700 mb-3">Keunggulan:</h4>
+                    <div className="space-y-2">
+                      {product.benefits.map((benefit, idx) => (
+                        <div key={idx} className="flex items-start gap-2">
+                          <TrendingUp className="text-orange-600 flex-shrink-0 mt-0.5" size={16} />
+                          <span className="text-gray-600 text-sm">{benefit}</span>
                         </div>
                       ))}
                     </div>

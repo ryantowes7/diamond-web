@@ -6,6 +6,7 @@ import Developments from '@/components/Developments'
 import Products from '@/components/Products'
 import Contact from '@/components/Contact'
 import Footer from '@/components/Footer'
+import WhatsAppButton from '@/components/WhatsAppButton'
 
 export const metadata = {
   title: 'Diamond Group - Developer Properti Terpercaya Indonesia',
@@ -30,6 +31,7 @@ export default function Home() {
       <Products />
       <Contact />
       <Footer />
+      <WhatsAppButton />
     </main>
   )
 }
