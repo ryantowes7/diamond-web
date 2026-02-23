@@ -1,56 +1,35 @@
-'use client'
-
-import { useEffect, useState } from 'react'
-import dynamic from 'next/dynamic'
 import Navbar from '@/components/Navbar'
 import Hero from '@/components/Hero'
-import UpdateNews from '@/components/UpdateNews'
-import HouseTypes from '@/components/HouseTypes'
-import HousingList from '@/components/HousingList'
+import News from '@/components/News'
+import CorporateStatement from '@/components/CorporateStatement'
+import Developments from '@/components/Developments'
+import Products from '@/components/Products'
 import Contact from '@/components/Contact'
-import GoogleMaps from '@/components/GoogleMaps'
 import Footer from '@/components/Footer'
-import WhatsAppFloat from '@/components/WhatsAppFloat'
 
-export default function HomePage() {
-  const [mounted, setMounted] = useState(false)
+export const metadata = {
+  title: 'Diamond Group - Developer Properti Terpercaya Indonesia',
+  description: 'Developer properti nasional dengan 12+ kawasan perumahan berkualitas. Membangun hunian berkelanjutan dengan standar internasional untuk keluarga Indonesia.',
+  keywords: 'diamond group, developer properti, perumahan indonesia, hunian berkualitas, properti nasional, diamond city',
+  openGraph: {
+    title: 'Diamond Group - Developer Properti Terpercaya Indonesia',
+    description: 'Developer properti nasional dengan 12+ kawasan perumahan berkualitas',
+    type: 'website',
+    locale: 'id_ID',
+  },
+}
 
-  useEffect(() => {
-    setMounted(true)
-  }, [])
-
-  if (!mounted) {
-    return null
-  }
-
+export default function Home() {
   return (
     <main className="min-h-screen bg-white">
-      {/* Navigation */}
       <Navbar />
-
-      {/* Hero Section */}
       <Hero />
-
-      {/* Update Diamond News Section */}
-      <UpdateNews />
-
-      {/* House Types Section */}
-      <HouseTypes />
-
-      {/* Housing List Section */}
-      <HousingList />
-
-      {/* Contact Section */}
+      <News />
+      <CorporateStatement />
+      <Developments />
+      <Products />
       <Contact />
-
-      {/* Google Maps Section */}
-      <GoogleMaps />
-
-      {/* Footer */}
       <Footer />
-
-      {/* WhatsApp Floating Button */}
-      <WhatsAppFloat />
     </main>
   )
 }

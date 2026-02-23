@@ -1,145 +1,169 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
-import Link from 'next/link'
-import Image from 'next/image'
+import { useRouter } from 'next/navigation'
+import { navigationLinks } from '@/data/navigation'
+import { Button } from '@/components/ui/button'
 
-const Navbar = () => {
-  const [isScrolled, setIsScrolled] = useState(false)
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+export default function Navbar() {
+  const [scrolled, setScrolled] = useState(false)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const router = useRouter()
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50)
+      setScrolled(window.scrollY > 50)
     }
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  const menuItems = [
-    { name: 'Profil', href: '#profil' },
-    { name: 'Update', href: '#update' },
-    { name: 'Produk', href: '#produk' },
-    { name: 'Kontak', href: '#kontak' },
-  ]
+  const handleNavigation = (href) => {
+    if (href.startsWith('#')) {
+      // Anchor link - scroll to section
+      const element = document.querySelector(href)
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' })
+        setMobileMenuOpen(false)
+      }
+    } else {
+      // Regular link - use Next.js router
+      router.push(href)
+      setMobileMenuOpen(false)
+    }
+  }
 
   return (
-    <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.5 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? 'bg-white shadow-lg backdrop-blur-sm bg-opacity-95'
-          : 'bg-transparent'
-      }`}
-    >
-      <div className="container mx-auto px-4">
-        {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center justify-center py-4">
-          {/* Left Menu Items */}
-          <div className="flex items-center gap-8 mr-12">
-            {menuItems.slice(0, 2).map((item, index) => (
-              <motion.a
-                key={item.name}
-                href={item.href}
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-                className={`text-sm font-medium uppercase tracking-wider transition-all duration-300 hover:text-gold relative group ${
-                  isScrolled ? 'text-gray-800' : 'text-white'
-                }`}
-              >
-                {item.name}
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gold transition-all duration-300 group-hover:w-full" />
-              </motion.a>
-            ))}
-          </div>
-
-          {/* Logo Center */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.2 }}
-            className="mx-8"
-          >
-            <Link href="/" className="flex items-center">
-              <div className={`text-2xl font-bold tracking-wider ${
-                isScrolled ? 'text-gray-800' : 'text-white'
-              }`}>
-                <span className="text-gold">DIAMOND</span>
-                <span className="ml-2">GROUP</span>
-              </div>
-            </Link>
-          </motion.div>
-
-          {/* Right Menu Items */}
-          <div className="flex items-center gap-8 ml-12">
-            {menuItems.slice(2).map((item, index) => (
-              <motion.a
-                key={item.name}
-                href={item.href}
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: (index + 2) * 0.1 }}
-                className={`text-sm font-medium uppercase tracking-wider transition-all duration-300 hover:text-gold relative group ${
-                  isScrolled ? 'text-gray-800' : 'text-white'
-                }`}
-              >
-                {item.name}
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gold transition-all duration-300 group-hover:w-full" />
-              </motion.a>
-            ))}
-          </div>
-        </div>
-
-        {/* Mobile Navigation */}
-        <div className="md:hidden flex items-center justify-between py-4">
-          <Link href="/" className="flex items-center">
-            <div className={`text-xl font-bold ${
-              isScrolled ? 'text-gray-800' : 'text-white'
-            }`}>
-              <span className="text-gold">DIAMOND</span> GROUP
-            </div>
-          </Link>
-
-          <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className={`p-2 ${
-              isScrolled ? 'text-gray-800' : 'text-white'
-            }`}
-          >
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-        </div>
-
-        {/* Mobile Menu */}
-        {isMobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-white shadow-lg rounded-b-2xl overflow-hidden"
-          >
-            <div className="flex flex-col py-4">
-              {menuItems.map((item) => (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="px-6 py-3 text-gray-800 hover:bg-gold hover:bg-opacity-10 hover:text-gold transition-all duration-300 font-medium"
+    <>
+      <motion.nav
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.5 }}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+          scrolled
+            ? 'bg-white/95 backdrop-blur-md shadow-lg'
+            : 'bg-transparent'
+        }`}
+      >
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-20 lg:h-24">
+            {/* Left Menu - Desktop */}
+            <div className="hidden lg:flex items-center space-x-8">
+              {navigationLinks.left.map((link) => (
+                <button
+                  key={link.href}
+                  onClick={() => handleNavigation(link.href)}
+                  className={`text-sm xl:text-base font-medium tracking-wide transition-all duration-300 hover:scale-105 ${
+                    scrolled
+                      ? 'text-gray-700 hover:text-orange-600'
+                      : 'text-white hover:text-orange-400'
+                  }`}
                 >
-                  {item.name}
-                </a>
+                  {link.label}
+                </button>
               ))}
+            </div>
+
+            {/* Logo - Center */}
+            <div className="flex-1 lg:flex-none flex justify-center lg:justify-center">
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                className="cursor-pointer"
+                onClick={() => handleNavigation('/')}
+              >
+                <div className="flex flex-col items-center">
+                  <span
+                    className={`text-2xl lg:text-3xl xl:text-4xl font-bold tracking-wider transition-colors duration-300 ${
+                      scrolled
+                        ? 'text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-orange-400'
+                        : 'text-white'
+                    }`}
+                  >
+                    DIAMOND
+                  </span>
+                  <span
+                    className={`text-xs lg:text-sm tracking-[0.3em] font-light ${
+                      scrolled ? 'text-gray-600' : 'text-white/90'
+                    }`}
+                  >
+                    GROUP
+                  </span>
+                </div>
+              </motion.div>
+            </div>
+
+            {/* Right Menu - Desktop */}
+            <div className="hidden lg:flex items-center space-x-8">
+              {navigationLinks.right.map((link) => (
+                <button
+                  key={link.href}
+                  onClick={() => handleNavigation(link.href)}
+                  className={`text-sm xl:text-base font-medium tracking-wide transition-all duration-300 hover:scale-105 ${
+                    scrolled
+                      ? 'text-gray-700 hover:text-orange-600'
+                      : 'text-white hover:text-orange-400'
+                  }`}
+                >
+                  {link.label}
+                </button>
+              ))}
+            </div>
+
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="lg:hidden p-2 rounded-lg transition-colors duration-300"
+              aria-label="Toggle menu"
+            >
+              {mobileMenuOpen ? (
+                <X
+                  className={scrolled ? 'text-gray-900' : 'text-white'}
+                  size={28}
+                />
+              ) : (
+                <Menu
+                  className={scrolled ? 'text-gray-900' : 'text-white'}
+                  size={28}
+                />
+              )}
+            </button>
+          </div>
+        </div>
+      </motion.nav>
+
+      {/* Mobile Menu Overlay */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, x: '100%' }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: '100%' }}
+            transition={{ type: 'tween', duration: 0.3 }}
+            className="fixed inset-0 z-40 lg:hidden"
+          >
+            <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-black">
+              <div className="flex flex-col items-center justify-center h-full space-y-8 px-8">
+                {[...navigationLinks.left, ...navigationLinks.right].map(
+                  (link, index) => (
+                    <motion.button
+                      key={link.href}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: index * 0.1 }}
+                      onClick={() => handleNavigation(link.href)}
+                      className="text-white text-2xl font-medium tracking-wide hover:text-orange-400 transition-colors duration-300"
+                    >
+                      {link.label}
+                    </motion.button>
+                  )
+                )}
+              </div>
             </div>
           </motion.div>
         )}
-      </div>
-    </motion.nav>
+      </AnimatePresence>
+    </>
   )
 }
-
-export default Navbar

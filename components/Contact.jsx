@@ -1,132 +1,160 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Phone, Mail, MapPin, Clock } from 'lucide-react'
+import { Phone, Mail, MapPin, Clock, MessageCircle } from 'lucide-react'
+import { contactInfo } from '@/data/contact'
+import { Card } from '@/components/ui/card'
+import { Button } from '@/components/ui/button'
 
-const Contact = () => {
-  const contactInfo = [
-    {
-      icon: Phone,
-      title: 'Telepon',
-      details: ['+62 812-3456-7890', '+62 813-9876-5432'],
-      action: 'tel:+6281234567890',
-    },
-    {
-      icon: Mail,
-      title: 'Email',
-      details: ['info@diamondgroup.co.id', 'marketing@diamondgroup.co.id'],
-      action: 'mailto:info@diamondgroup.co.id',
-    },
-    {
-      icon: MapPin,
-      title: 'Alamat',
-      details: ['Jl. Gajah Mada No. 123', 'Jember, Jawa Timur 68121'],
-      action: null,
-    },
-    {
-      icon: Clock,
-      title: 'Jam Operasional',
-      details: ['Senin - Jumat: 08.00 - 17.00', 'Sabtu: 08.00 - 14.00'],
-      action: null,
-    },
-  ]
+export default function Contact() {
+  const handleWhatsApp = () => {
+    const phone = contactInfo.whatsapp.replace(/\D/g, '')
+    window.open(`https://wa.me/${phone}`, '_blank')
+  }
 
   return (
-    <section id="kontak" className="py-20 bg-gradient-to-b from-white to-gray-50">
-      <div className="container mx-auto px-4">
+    <section id="kontak" className="py-20 lg:py-32 bg-gradient-to-b from-white to-gray-50">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-16 lg:mb-20"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
-            Hubungi <span className="text-gold">Kami</span>
+          <h2 className="text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-4 tracking-tight">
+            Hubungi Kami
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Tim kami siap membantu mewujudkan hunian impian keluarga Anda
+          <p className="text-lg lg:text-xl text-gray-600 max-w-2xl mx-auto">
+            Tim kami siap membantu Anda menemukan hunian impian
           </p>
         </motion.div>
 
-        {/* Contact Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-          {contactInfo.map((contact, index) => {
-            const Icon = contact.icon
-            return (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="group"
-              >
-                <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 h-full">
-                  <div className="flex flex-col items-center text-center">
-                    <div className="w-16 h-16 bg-gold bg-opacity-10 rounded-full flex items-center justify-center mb-4 group-hover:bg-gold group-hover:bg-opacity-100 transition-all duration-300">
-                      <Icon className="text-gold group-hover:text-white transition-colors duration-300" size={28} />
-                    </div>
-                    <h3 className="text-lg font-bold text-gray-800 mb-3">
-                      {contact.title}
-                    </h3>
-                    {contact.details.map((detail, idx) => (
-                      <p key={idx} className="text-gray-600 text-sm mb-1">
-                        {detail}
-                      </p>
-                    ))}
-                    {contact.action && (
-                      <a
-                        href={contact.action}
-                        className="mt-4 text-gold hover:text-gold/80 font-semibold text-sm transition-colors duration-300"
-                      >
-                        Hubungi Sekarang →
-                      </a>
-                    )}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+          {/* Contact Information */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <div className="space-y-6">
+              {/* Phone */}
+              <Card className="p-6 rounded-2xl border-2 border-gray-100 hover:border-orange-200 hover:shadow-lg transition-all duration-300">
+                <div className="flex items-start gap-4">
+                  <div className="p-3 bg-orange-100 rounded-xl">
+                    <Phone className="text-orange-600" size={24} />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-lg font-bold text-gray-900 mb-1">Telepon</h3>
+                    <a
+                      href={`tel:${contactInfo.phone}`}
+                      className="text-gray-600 hover:text-orange-600 transition-colors duration-300"
+                    >
+                      {contactInfo.phone}
+                    </a>
                   </div>
                 </div>
-              </motion.div>
-            )
-          })}
-        </div>
+              </Card>
 
-        {/* CTA Box */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="bg-gradient-to-r from-gold to-yellow-600 rounded-2xl p-8 md:p-12 text-center shadow-2xl"
-        >
-          <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
-            Siap Memiliki Hunian Impian?
-          </h3>
-          <p className="text-white text-opacity-90 mb-6 max-w-2xl mx-auto">
-            Konsultasikan kebutuhan properti Anda dengan tim profesional kami. 
-            Kami siap membantu menemukan hunian yang tepat untuk keluarga Anda.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="https://wa.me/6281234567890?text=Halo%20Diamond%20Group,%20saya%20tertarik%20dengan%20perumahan%20Anda"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center px-8 py-4 bg-white text-gold font-bold rounded-full hover:bg-gray-100 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
-            >
-              <Phone className="mr-2" size={20} />
-              WhatsApp Kami
-            </a>
-            <a
-              href="#produk"
-              className="inline-flex items-center justify-center px-8 py-4 bg-transparent border-2 border-white text-white font-bold rounded-full hover:bg-white hover:text-gold transition-all duration-300"
-            >
-              Lihat Produk
-            </a>
-          </div>
-        </motion.div>
+              {/* Email */}
+              <Card className="p-6 rounded-2xl border-2 border-gray-100 hover:border-orange-200 hover:shadow-lg transition-all duration-300">
+                <div className="flex items-start gap-4">
+                  <div className="p-3 bg-orange-100 rounded-xl">
+                    <Mail className="text-orange-600" size={24} />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-lg font-bold text-gray-900 mb-1">Email</h3>
+                    <a
+                      href={`mailto:${contactInfo.email}`}
+                      className="text-gray-600 hover:text-orange-600 transition-colors duration-300"
+                    >
+                      {contactInfo.email}
+                    </a>
+                  </div>
+                </div>
+              </Card>
+
+              {/* Address */}
+              <Card className="p-6 rounded-2xl border-2 border-gray-100 hover:border-orange-200 hover:shadow-lg transition-all duration-300">
+                <div className="flex items-start gap-4">
+                  <div className="p-3 bg-orange-100 rounded-xl">
+                    <MapPin className="text-orange-600" size={24} />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-lg font-bold text-gray-900 mb-1">Alamat Kantor Pusat</h3>
+                    <p className="text-gray-600">{contactInfo.address}</p>
+                  </div>
+                </div>
+              </Card>
+
+              {/* Working Hours */}
+              <Card className="p-6 rounded-2xl border-2 border-gray-100 hover:border-orange-200 hover:shadow-lg transition-all duration-300">
+                <div className="flex items-start gap-4">
+                  <div className="p-3 bg-orange-100 rounded-xl">
+                    <Clock className="text-orange-600" size={24} />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-lg font-bold text-gray-900 mb-1">Jam Operasional</h3>
+                    <p className="text-gray-600 whitespace-pre-line">{contactInfo.workingHours}</p>
+                  </div>
+                </div>
+              </Card>
+
+              {/* WhatsApp CTA */}
+              <motion.div
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <Button
+                  onClick={handleWhatsApp}
+                  size="lg"
+                  className="w-full bg-gradient-to-r from-green-600 to-green-500 hover:from-green-700 hover:to-green-600 text-white rounded-xl py-6 text-lg font-medium"
+                >
+                  <MessageCircle className="mr-2" size={24} />
+                  Chat via WhatsApp
+                </Button>
+              </motion.div>
+            </div>
+          </motion.div>
+
+          {/* Map */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <Card className="overflow-hidden rounded-3xl shadow-2xl h-full">
+              <iframe
+                src={contactInfo.mapEmbed}
+                width="100%"
+                height="100%"
+                style={{ border: 0, minHeight: '500px' }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Diamond Group Location"
+              />
+            </Card>
+          </motion.div>
+        </div>
       </div>
+
+      {/* Floating WhatsApp Button */}
+      <motion.button
+        initial={{ scale: 0 }}
+        animate={{ scale: 1 }}
+        transition={{ delay: 2, type: 'spring', stiffness: 260, damping: 20 }}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+        onClick={handleWhatsApp}
+        className="fixed bottom-8 right-8 z-40 p-4 bg-gradient-to-r from-green-600 to-green-500 hover:from-green-700 hover:to-green-600 text-white rounded-full shadow-2xl transition-all duration-300"
+        aria-label="WhatsApp"
+      >
+        <MessageCircle size={28} />
+      </motion.button>
     </section>
   )
 }
-
-export default Contact
