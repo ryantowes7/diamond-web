@@ -2,10 +2,11 @@
 
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Menu, X, ChevronDown } from 'lucide-react'
+import { Menu, X, ChevronDown, MapPin, ArrowRight, Star } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { navigationLinks } from '@/data/navigation'
 import { useLanguage } from '@/contexts/LanguageContext'
+import { developments } from '@/data/developments'
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
@@ -41,9 +42,22 @@ export default function Navbar() {
   }
 
   const links = navigationLinks[language] || navigationLinks.id
-  const projectSubmenu = language === 'id' 
-    ? [{ label: 'Komersil', href: '/proyek?type=commercial' }, { label: 'Subsidi', href: '/proyek?type=subsidized' }]
-    : [{ label: 'Commercial', href: '/proyek?type=commercial' }, { label: 'Subsidized', href: '/proyek?type=subsidized' }]
+  
+  // Featured project for dropdown
+  const featuredProject = developments.find(dev => dev.id === 'diamond-city')
+  
+  // All 9 projects list for dropdown
+  const projectsList = [
+    'diamond-city',
+    'rinjani-village',
+    'kampus-village',
+    'diamond-cluster-griya-mangli',
+    'rajawali-residence',
+    'green-hill-boulevard',
+    'gumuk-mas-permai',
+    'grand-permata-ajung',
+    'the-kayana'
+  ].map(id => developments.find(dev => dev.id === id)).filter(Boolean)
 
   return (
     <>
@@ -148,7 +162,7 @@ export default function Navbar() {
                         <ChevronDown size={16} className={`transition-transform duration-300 ${projectDropdownOpen ? 'rotate-180' : ''}`} />
                       </motion.button>
                       
-                      {/* Dropdown Menu */}
+                      {/* Dropdown Menu - 2 Column Layout like Sinar Mas Land */}
                       <AnimatePresence>
                         {projectDropdownOpen && (
                           <motion.div
@@ -156,17 +170,81 @@ export default function Navbar() {
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: -10 }}
                             transition={{ duration: 0.2 }}
-                            className="absolute top-full left-0 mt-1 w-48 bg-white rounded-lg shadow-xl border border-gray-100 overflow-hidden"
+                            className="absolute top-full left-0 mt-2 w-[750px] bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden"
                           >
-                            {projectSubmenu.map((submenu) => (
-                              <button
-                                key={submenu.href}
-                                onClick={() => handleNavigation(submenu.href)}
-                                className="w-full text-left px-4 py-3 text-sm font-medium text-gray-700 hover:bg-orange-50 hover:text-orange-600 transition-colors duration-200"
-                              >
-                                {submenu.label}
-                              </button>
-                            ))}
+                            <div className="grid grid-cols-2 gap-0">
+                              {/* Left Column - Projects List */}
+                              <div className="p-6 border-r border-gray-100">
+                                <h3 className="text-sm font-semibold text-gray-500 mb-4 uppercase tracking-wider">
+                                  {language === 'id' ? 'Semua Proyek' : 'All Projects'}
+                                </h3>
+                                <div className="grid grid-cols-2 gap-2">
+                                  {projectsList.map((project) => (
+                                    <button
+                                      key={project.id}
+                                      onClick={() => handleNavigation(`/proyek#${project.id}`)}
+                                      className="text-left px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-orange-50 hover:text-orange-600 rounded-lg transition-all duration-200"
+                                    >
+                                      {project.name}
+                                    </button>
+                                  ))}
+                                </div>
+
+                                {/* Bottom Links */}
+                                <div className="mt-6 pt-4 border-t border-gray-100">
+                                  <button
+                                    onClick={() => handleNavigation('/proyek')}
+                                    className="text-sm font-semibold text-orange-600 hover:text-orange-700 flex items-center gap-1 transition-colors"
+                                  >
+                                    {language === 'id' ? 'Lihat Semua Proyek' : 'View All Projects'}
+                                    <ArrowRight size={14} />
+                                  </button>
+                                </div>
+                              </div>
+
+                              {/* Right Column - Featured Project */}
+                              {featuredProject && (
+                                <div className="p-6 bg-gradient-to-br from-orange-50 to-white">
+                                  <div className="flex items-center gap-2 mb-3">
+                                    <Star size={16} className="text-orange-600 fill-orange-600" />
+                                    <span className="text-xs font-bold text-orange-600 uppercase tracking-wider">
+                                      {language === 'id' ? 'Proyek Unggulan' : 'Featured Project'}
+                                    </span>
+                                  </div>
+                                  
+                                  <div className="relative rounded-xl overflow-hidden mb-4 group cursor-pointer"
+                                       onClick={() => handleNavigation(`/proyek#${featuredProject.id}`)}>
+                                    <img
+                                      src={featuredProject.image}
+                                      alt={featuredProject.name}
+                                      className="w-full h-32 object-cover transition-transform duration-500 group-hover:scale-110"
+                                    />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                                    <div className="absolute bottom-3 left-3 right-3">
+                                      <h4 className="text-white font-bold text-base mb-1">
+                                        {featuredProject.name}
+                                      </h4>
+                                      <div className="flex items-center gap-1 text-white/90 text-xs">
+                                        <MapPin size={12} />
+                                        <span>{language === 'id' ? featuredProject.location.id : featuredProject.location.en}</span>
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                  <p className="text-xs text-gray-600 leading-relaxed mb-4 line-clamp-2">
+                                    {language === 'id' ? featuredProject.description.id : featuredProject.description.en}
+                                  </p>
+
+                                  <button
+                                    onClick={() => handleNavigation(`/proyek#${featuredProject.id}`)}
+                                    className="w-full px-4 py-2.5 bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 text-white text-sm font-semibold rounded-lg transition-all duration-300 flex items-center justify-center gap-2 shadow-md hover:shadow-lg"
+                                  >
+                                    {language === 'id' ? 'Temukan Sekarang' : 'Discover Now'}
+                                    <ArrowRight size={16} />
+                                  </button>
+                                </div>
+                              )}
+                            </div>
                           </motion.div>
                         )}
                       </AnimatePresence>
@@ -255,14 +333,14 @@ export default function Navbar() {
             transition={{ type: 'tween', duration: 0.3 }}
             className="fixed inset-0 z-40 lg:hidden"
           >
-            <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-orange-900 to-black">
-              <div className="flex flex-col items-center justify-center h-full space-y-6 px-8">
+            <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-orange-900 to-black overflow-y-auto">
+              <div className="flex flex-col items-center justify-start min-h-full space-y-6 px-8 py-24">
                 {links.map((link, index) => {
                   const isProjectLink = link.href === '/proyek'
                   
                   if (isProjectLink) {
                     return (
-                      <div key={link.href} className="text-center space-y-3">
+                      <div key={link.href} className="text-center space-y-3 w-full">
                         <motion.div
                           initial={{ opacity: 0, y: 20 }}
                           animate={{ opacity: 1, y: 0 }}
@@ -271,18 +349,20 @@ export default function Navbar() {
                         >
                           {link.label}
                         </motion.div>
-                        {projectSubmenu.map((submenu, subIndex) => (
-                          <motion.button
-                            key={submenu.href}
-                            initial={{ opacity: 0, x: -20 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ delay: (index + subIndex * 0.5) * 0.1 }}
-                            onClick={() => handleNavigation(submenu.href)}
-                            className="block text-white/80 text-lg hover:text-orange-400 transition-colors duration-300"
-                          >
-                            • {submenu.label}
-                          </motion.button>
-                        ))}
+                        <div className="max-h-64 overflow-y-auto space-y-2">
+                          {projectsList.map((project, subIndex) => (
+                            <motion.button
+                              key={project.id}
+                              initial={{ opacity: 0, x: -20 }}
+                              animate={{ opacity: 1, x: 0 }}
+                              transition={{ delay: (index + subIndex * 0.3) * 0.1 }}
+                              onClick={() => handleNavigation(`/proyek#${project.id}`)}
+                              className="block w-full text-white/80 text-base hover:text-orange-400 transition-colors duration-300 py-1"
+                            >
+                              • {project.name}
+                            </motion.button>
+                          ))}
+                        </div>
                       </div>
                     )
                   }

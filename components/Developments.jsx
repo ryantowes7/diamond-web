@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
-import { MapPin, ArrowRight, ChevronLeft, ChevronRight, Play } from 'lucide-react'
+import { MapPin, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react'
 import { developments } from '@/data/developments'
 import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
@@ -58,17 +58,17 @@ export default function Developments() {
   const flagshipBadge = language === 'id' ? 'FLAGSHIP PROJECT' : 'FLAGSHIP PROJECT'
 
   return (
-    <section id="proyek" className="py-12 lg:py-20 bg-gradient-to-b from-gray-50 to-white">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="proyek" className="py-16 lg:py-20 bg-gradient-to-b from-gray-50 to-white">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-10 lg:mb-14"
+          className="text-center mb-12 lg:mb-14"
         >
-          <h2 className="text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 mb-3 tracking-tight">
+          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-3 tracking-tight">
             {sectionTitle}
           </h2>
           <p className="text-base lg:text-lg text-gray-600 max-w-2xl mx-auto">
@@ -76,34 +76,33 @@ export default function Developments() {
           </p>
         </motion.div>
 
-        {/* Featured Development - Full Screen with Right Center Blur Overlay */}
+        {/* Featured Development */}
         {featured && (
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="mb-12 lg:mb-16"
+            className="mb-12 lg:mb-14"
           >
             <Card className="group overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-700 border-0">
-              <div className="relative h-[500px] lg:h-[600px] xl:h-[700px] overflow-hidden">
-                {/* Full Screen Image/Video - Remains Clear */}
+              <div className="relative h-[450px] lg:h-[550px] xl:h-[600px] overflow-hidden">
+                {/* Full Screen Image */}
                 <img
                   src={featured.image}
                   alt={getText(featured.name)}
                   className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
                 />
                 
-                {/* Featured Badge - Top Left */}
-                <div className="absolute top-6 left-6 z-10">
-                  <span className="px-4 py-2 bg-gradient-to-r from-orange-600 to-red-600 text-white text-xs font-bold rounded-full shadow-lg backdrop-blur-sm">
+                {/* Featured Badge */}
+                <div className="absolute top-5 left-5 z-10">
+                  <span className="px-4 py-2 bg-gradient-to-r from-orange-600 to-red-600 text-white text-xs font-bold rounded-full shadow-lg">
                     {flagshipBadge}
                   </span>
                 </div>
 
-                {/* Content Overlay - Right Center with Subtle Blur Gradient */}
+                {/* Content Overlay */}
                 <div className="absolute inset-y-0 right-0 flex items-center z-10 w-full lg:w-2/5 xl:w-1/3">
-                  {/* Smooth Blur Gradient Background - No Hard Edges */}
                   <div className="absolute inset-0 bg-gradient-to-l from-black/75 via-black/60 to-transparent backdrop-blur-[2px]" 
                        style={{
                          maskImage: 'linear-gradient(to left, rgba(0,0,0,1) 0%, rgba(0,0,0,0.9) 40%, rgba(0,0,0,0) 100%)',
@@ -111,18 +110,17 @@ export default function Developments() {
                        }} 
                   />
                   
-                  {/* Compact Content Container */}
-                  <div className="relative px-6 lg:px-8 xl:px-10 py-8 ml-auto max-w-md">
+                  <div className="relative px-6 lg:px-8 py-6 ml-auto max-w-md">
                     {/* Location */}
                     <motion.div
                       initial={{ opacity: 0, x: 20 }}
                       whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true }}
                       transition={{ delay: 0.3 }}
-                      className="flex items-center gap-2 text-orange-400 mb-3"
+                      className="flex items-center gap-2 text-orange-400 mb-2"
                     >
                       <MapPin size={18} />
-                      <span className="text-sm font-medium tracking-wide">{getText(featured.location)}</span>
+                      <span className="text-sm font-medium">{getText(featured.location)}</span>
                     </motion.div>
                     
                     {/* Project Name */}
@@ -131,7 +129,7 @@ export default function Developments() {
                       whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true }}
                       transition={{ delay: 0.4 }}
-                      className="text-2xl lg:text-3xl xl:text-4xl font-bold text-white mb-3 leading-tight drop-shadow-lg"
+                      className="text-2xl lg:text-3xl font-bold text-white mb-3 leading-tight"
                     >
                       {getText(featured.name)}
                     </motion.h3>
@@ -142,25 +140,25 @@ export default function Developments() {
                       whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true }}
                       transition={{ delay: 0.5 }}
-                      className="mb-4"
+                      className="mb-3"
                     >
                       <span className="inline-block px-3 py-1.5 bg-white/20 backdrop-blur-md text-white text-xs font-medium rounded-full border border-white/30">
                         {getText(featured.type)}
                       </span>
                     </motion.div>
                     
-                    {/* Description - Compact */}
+                    {/* Description */}
                     <motion.p
                       initial={{ opacity: 0, x: 20 }}
                       whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true }}
                       transition={{ delay: 0.6 }}
-                      className="text-white/95 text-sm lg:text-base leading-relaxed mb-6 drop-shadow-md line-clamp-4"
+                      className="text-white/95 text-sm lg:text-base leading-relaxed mb-5 line-clamp-3"
                     >
                       {getText(featured.description)}
                     </motion.p>
                     
-                    {/* CTA Button - Compact */}
+                    {/* CTA Button */}
                     <motion.div
                       initial={{ opacity: 0, y: 20 }}
                       whileInView={{ opacity: 1, y: 0 }}
@@ -184,18 +182,16 @@ export default function Developments() {
 
         {/* Other Developments Carousel */}
         <div className="relative">
-          {/* Carousel Header */}
           <div className="flex items-center justify-between mb-6">
             <h3 className="text-xl lg:text-2xl font-bold text-gray-900">
               {otherProjectsTitle}
             </h3>
             
-            {/* Navigation Buttons */}
             <div className="flex gap-2">
               <button
                 onClick={handlePrev}
                 disabled={currentIndex === 0}
-                className="p-2.5 rounded-full bg-white border-2 border-gray-200 hover:border-orange-500 hover:bg-orange-50 disabled:opacity-30 disabled:hover:border-gray-200 disabled:hover:bg-white transition-all duration-300"
+                className="p-2 rounded-full bg-white border-2 border-gray-200 hover:border-orange-500 hover:bg-orange-50 disabled:opacity-30 disabled:hover:border-gray-200 disabled:hover:bg-white transition-all duration-300"
                 aria-label="Previous"
               >
                 <ChevronLeft className="text-gray-700" size={20} />
@@ -203,7 +199,7 @@ export default function Developments() {
               <button
                 onClick={handleNext}
                 disabled={currentIndex >= maxIndex}
-                className="p-2.5 rounded-full bg-white border-2 border-gray-200 hover:border-orange-500 hover:bg-orange-50 disabled:opacity-30 disabled:hover:border-gray-200 disabled:hover:bg-white transition-all duration-300"
+                className="p-2 rounded-full bg-white border-2 border-gray-200 hover:border-orange-500 hover:bg-orange-50 disabled:opacity-30 disabled:hover:border-gray-200 disabled:hover:bg-white transition-all duration-300"
                 aria-label="Next"
               >
                 <ChevronRight className="text-gray-700" size={20} />
@@ -211,7 +207,6 @@ export default function Developments() {
             </div>
           </div>
 
-          {/* Carousel */}
           <div className="overflow-hidden" ref={carouselRef}>
             <motion.div
               animate={{ x: `${-currentIndex * (100 / cardsPerView)}%` }}
@@ -221,7 +216,7 @@ export default function Developments() {
               {others.map((dev, index) => (
                 <motion.div
                   key={dev.id}
-                  initial={{ opacity: 0, y: 30 }}
+                  initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
@@ -237,14 +232,12 @@ export default function Developments() {
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
                       
-                      {/* Type Badge */}
                       <div className="absolute top-3 right-3">
                         <span className="px-2.5 py-1 bg-white/20 backdrop-blur-sm text-white text-xs font-medium rounded-full">
                           {getText(dev.type)}
                         </span>
                       </div>
 
-                      {/* Content Overlay */}
                       <div className="absolute bottom-0 left-0 right-0 p-4">
                         <div className="flex items-center gap-1.5 text-white/90 mb-1.5">
                           <MapPin size={14} />

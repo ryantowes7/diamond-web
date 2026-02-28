@@ -19,10 +19,10 @@ export default function Footer() {
   const currentYear = new Date().getFullYear()
 
   return (
-    <footer className="bg-gradient-to-b from-gray-900 to-black text-white pt-20 pb-8">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <footer className="bg-gradient-to-b from-gray-900 to-black text-white pt-16 pb-6">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         {/* Top Section */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-12 lg:gap-8 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-10 lg:gap-8 mb-12">
           {/* Brand Column */}
           <div className="lg:col-span-2">
             <motion.div
@@ -31,13 +31,13 @@ export default function Footer() {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <div className="mb-6">
+              <div className="mb-5">
                 <h3 className="text-3xl font-bold bg-gradient-to-r from-orange-500 to-orange-400 bg-clip-text text-transparent mb-2">
                   DIAMOND
                 </h3>
                 <p className="text-sm tracking-[0.3em] text-gray-400">GROUP</p>
               </div>
-              <p className="text-gray-400 leading-relaxed mb-6 text-sm">
+              <p className="text-gray-400 leading-relaxed mb-5 text-sm">
                 Developer properti terpercaya dengan komitmen menghadirkan hunian berkualitas tinggi dan berkelanjutan untuk keluarga Indonesia.
               </p>
               {/* Social Media */}
@@ -65,8 +65,8 @@ export default function Footer() {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
           >
-            <h4 className="text-lg font-bold mb-6">Perusahaan</h4>
-            <ul className="space-y-3">
+            <h4 className="text-base font-bold mb-5">Perusahaan</h4>
+            <ul className="space-y-2.5">
               {footerLinks.company.map((link) => (
                 <li key={link.label}>
                   <a
@@ -87,8 +87,8 @@ export default function Footer() {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <h4 className="text-lg font-bold mb-6">Proyek</h4>
-            <ul className="space-y-3">
+            <h4 className="text-base font-bold mb-5">Proyek</h4>
+            <ul className="space-y-2.5">
               {footerLinks.projects.map((link) => (
                 <li key={link.label}>
                   <a
@@ -109,8 +109,8 @@ export default function Footer() {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
-            <h4 className="text-lg font-bold mb-6">Investor</h4>
-            <ul className="space-y-3">
+            <h4 className="text-base font-bold mb-5">Investor</h4>
+            <ul className="space-y-2.5">
               {footerLinks.investor.map((link) => (
                 <li key={link.label}>
                   <a
@@ -131,8 +131,8 @@ export default function Footer() {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            <h4 className="text-lg font-bold mb-6">Kontak</h4>
-            <ul className="space-y-3">
+            <h4 className="text-base font-bold mb-5">Kontak</h4>
+            <ul className="space-y-2.5">
               {footerLinks.contact.map((link) => (
                 <li key={link.label}>
                   <a
@@ -148,7 +148,7 @@ export default function Footer() {
         </div>
 
         {/* Elegant Divider */}
-        <div className="h-px bg-gradient-to-r from-transparent via-orange-600/30 to-transparent mb-8" />
+        <div className="h-px bg-gradient-to-r from-transparent via-orange-600/30 to-transparent mb-6" />
 
         {/* Bottom Section */}
         <motion.div

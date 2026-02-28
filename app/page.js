@@ -1,9 +1,10 @@
 import Navbar from '@/components/Navbar'
 import Hero from '@/components/Hero'
-import News from '@/components/News'
 import CorporateStatement from '@/components/CorporateStatement'
 import Developments from '@/components/Developments'
-import Products from '@/components/Products'
+import Awards from '@/components/Awards'
+import News from '@/components/News'
+import Events from '@/components/Events'
 import Contact from '@/components/Contact'
 import Footer from '@/components/Footer'
 import WhatsAppButton from '@/components/WhatsAppButton'
@@ -25,10 +26,11 @@ export default function Home() {
     <main className="min-h-screen bg-white">
       <Navbar />
       <Hero />
-      <News />
       <CorporateStatement />
       <Developments />
-      <Products />
+      <Awards />
+      <News />
+      <Events />
       <Contact />
       <Footer />
       <WhatsAppButton />

@@ -13,25 +13,25 @@ export default function Contact() {
   }
 
   return (
-    <section id="kontak" className="py-20 lg:py-32 bg-gradient-to-b from-white to-gray-50">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="kontak" className="py-16 lg:py-20 bg-gradient-to-b from-white to-gray-50">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16 lg:mb-20"
+          className="text-center mb-12 lg:mb-14"
         >
-          <h2 className="text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-4 tracking-tight">
+          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-3 tracking-tight">
             Hubungi Kami
           </h2>
-          <p className="text-lg lg:text-xl text-gray-600 max-w-2xl mx-auto">
+          <p className="text-base lg:text-lg text-gray-600 max-w-2xl mx-auto">
             Tim kami siap membantu Anda menemukan hunian impian
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
           {/* Contact Information */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -39,18 +39,18 @@ export default function Contact() {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <div className="space-y-6">
+            <div className="space-y-5">
               {/* Phone */}
-              <Card className="p-6 rounded-2xl border-2 border-gray-100 hover:border-orange-200 hover:shadow-lg transition-all duration-300">
+              <Card className="p-5 rounded-xl border-2 border-gray-100 hover:border-orange-200 hover:shadow-lg transition-all duration-300">
                 <div className="flex items-start gap-4">
-                  <div className="p-3 bg-orange-100 rounded-xl">
-                    <Phone className="text-orange-600" size={24} />
+                  <div className="p-2.5 bg-orange-100 rounded-lg">
+                    <Phone className="text-orange-600" size={22} />
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-lg font-bold text-gray-900 mb-1">Telepon</h3>
+                    <h3 className="text-base font-bold text-gray-900 mb-1">Telepon</h3>
                     <a
                       href={`tel:${contactInfo.phone}`}
-                      className="text-gray-600 hover:text-orange-600 transition-colors duration-300"
+                      className="text-gray-600 text-sm hover:text-orange-600 transition-colors duration-300"
                     >
                       {contactInfo.phone}
                     </a>
@@ -59,16 +59,16 @@ export default function Contact() {
               </Card>
 
               {/* Email */}
-              <Card className="p-6 rounded-2xl border-2 border-gray-100 hover:border-orange-200 hover:shadow-lg transition-all duration-300">
+              <Card className="p-5 rounded-xl border-2 border-gray-100 hover:border-orange-200 hover:shadow-lg transition-all duration-300">
                 <div className="flex items-start gap-4">
-                  <div className="p-3 bg-orange-100 rounded-xl">
-                    <Mail className="text-orange-600" size={24} />
+                  <div className="p-2.5 bg-orange-100 rounded-lg">
+                    <Mail className="text-orange-600" size={22} />
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-lg font-bold text-gray-900 mb-1">Email</h3>
+                    <h3 className="text-base font-bold text-gray-900 mb-1">Email</h3>
                     <a
                       href={`mailto:${contactInfo.email}`}
-                      className="text-gray-600 hover:text-orange-600 transition-colors duration-300"
+                      className="text-gray-600 text-sm hover:text-orange-600 transition-colors duration-300"
                     >
                       {contactInfo.email}
                     </a>
@@ -77,27 +77,27 @@ export default function Contact() {
               </Card>
 
               {/* Address */}
-              <Card className="p-6 rounded-2xl border-2 border-gray-100 hover:border-orange-200 hover:shadow-lg transition-all duration-300">
+              <Card className="p-5 rounded-xl border-2 border-gray-100 hover:border-orange-200 hover:shadow-lg transition-all duration-300">
                 <div className="flex items-start gap-4">
-                  <div className="p-3 bg-orange-100 rounded-xl">
-                    <MapPin className="text-orange-600" size={24} />
+                  <div className="p-2.5 bg-orange-100 rounded-lg">
+                    <MapPin className="text-orange-600" size={22} />
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-lg font-bold text-gray-900 mb-1">Alamat Kantor Pusat</h3>
-                    <p className="text-gray-600">{contactInfo.address}</p>
+                    <h3 className="text-base font-bold text-gray-900 mb-1">Alamat Kantor Pusat</h3>
+                    <p className="text-gray-600 text-sm">{contactInfo.address}</p>
                   </div>
                 </div>
               </Card>
 
               {/* Working Hours */}
-              <Card className="p-6 rounded-2xl border-2 border-gray-100 hover:border-orange-200 hover:shadow-lg transition-all duration-300">
+              <Card className="p-5 rounded-xl border-2 border-gray-100 hover:border-orange-200 hover:shadow-lg transition-all duration-300">
                 <div className="flex items-start gap-4">
-                  <div className="p-3 bg-orange-100 rounded-xl">
-                    <Clock className="text-orange-600" size={24} />
+                  <div className="p-2.5 bg-orange-100 rounded-lg">
+                    <Clock className="text-orange-600" size={22} />
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-lg font-bold text-gray-900 mb-1">Jam Operasional</h3>
-                    <p className="text-gray-600 whitespace-pre-line">{contactInfo.workingHours}</p>
+                    <h3 className="text-base font-bold text-gray-900 mb-1">Jam Operasional</h3>
+                    <p className="text-gray-600 text-sm whitespace-pre-line">{contactInfo.workingHours}</p>
                   </div>
                 </div>
               </Card>
@@ -110,9 +110,9 @@ export default function Contact() {
                 <Button
                   onClick={handleWhatsApp}
                   size="lg"
-                  className="w-full bg-gradient-to-r from-green-600 to-green-500 hover:from-green-700 hover:to-green-600 text-white rounded-xl py-6 text-lg font-medium"
+                  className="w-full bg-gradient-to-r from-green-600 to-green-500 hover:from-green-700 hover:to-green-600 text-white rounded-xl py-5 text-base font-medium"
                 >
-                  <MessageCircle className="mr-2" size={24} />
+                  <MessageCircle className="mr-2" size={22} />
                   Chat via WhatsApp
                 </Button>
               </motion.div>
@@ -126,12 +126,12 @@ export default function Contact() {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <Card className="overflow-hidden rounded-3xl shadow-2xl h-full">
+            <Card className="overflow-hidden rounded-2xl shadow-2xl h-full">
               <iframe
                 src={contactInfo.mapEmbed}
                 width="100%"
                 height="100%"
-                style={{ border: 0, minHeight: '500px' }}
+                style={{ border: 0, minHeight: '480px' }}
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
@@ -141,20 +141,6 @@ export default function Contact() {
           </motion.div>
         </div>
       </div>
-
-      {/* Floating WhatsApp Button */}
-      <motion.button
-        initial={{ scale: 0 }}
-        animate={{ scale: 1 }}
-        transition={{ delay: 2, type: 'spring', stiffness: 260, damping: 20 }}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
-        onClick={handleWhatsApp}
-        className="fixed bottom-8 right-8 z-40 p-4 bg-gradient-to-r from-green-600 to-green-500 hover:from-green-700 hover:to-green-600 text-white rounded-full shadow-2xl transition-all duration-300"
-        aria-label="WhatsApp"
-      >
-        <MessageCircle size={28} />
-      </motion.button>
     </section>
   )
 }

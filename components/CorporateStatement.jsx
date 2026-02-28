@@ -62,10 +62,10 @@ export default function CorporateStatement() {
   const stats = statistics[language] || statistics.id || []
 
   return (
-    <section id="tentang" className="py-12 lg:py-20 bg-white">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="tentang" className="py-16 lg:py-20 bg-white">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         {/* Statement Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center mb-12 lg:mb-20">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center mb-12 lg:mb-16">
           {/* Left: Big Typography Statement */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -73,7 +73,7 @@ export default function CorporateStatement() {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 mb-4 lg:mb-6 leading-tight tracking-tight">
+            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4 leading-tight tracking-tight">
               {getText(corporateStatement.headline)}
             </h2>
             <p className="text-base lg:text-lg text-gray-600 leading-relaxed">
@@ -98,29 +98,29 @@ export default function CorporateStatement() {
               <div className="absolute inset-0 bg-gradient-to-tr from-orange-600/20 to-transparent" />
             </div>
             {/* Decorative Element */}
-            <div className="absolute -bottom-4 -right-4 w-40 h-40 bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl -z-10 opacity-20" />
+            <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl -z-10 opacity-20" />
           </motion.div>
         </div>
 
         {/* Statistics Section */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-10">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
             {stats.map((stat, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 className="text-center"
               >
                 <div className="mb-1.5">
-                  <span className="text-3xl lg:text-4xl xl:text-5xl font-bold bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">
+                  <span className="text-3xl lg:text-4xl font-bold bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">
                     <AnimatedCounter value={stat.value} suffix={stat.suffix} />
                   </span>
                 </div>

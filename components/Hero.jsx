@@ -29,7 +29,6 @@ export default function Hero() {
     }
   }
 
-  
   // Get localized content
   const content = heroData[language] || heroData.id
   const scrollText = language === 'id' ? 'Scroll' : 'Scroll'
@@ -54,12 +53,11 @@ export default function Hero() {
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/60" />
       </div>
 
-      {/* Content - More Compact */}
+      {/* Content - Kept Large as Requested */}
       <div className="relative z-10 h-full flex items-center justify-center">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="content-container w-full">
           <div className="max-w-4xl mx-auto text-center">
-            
-            {/* Animated Headline - Reduced Size */}
+            {/* Animated Headline - Kept Large */}
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -69,7 +67,7 @@ export default function Hero() {
               {content.headline}
             </motion.h1>
 
-            {/* Subheadline - Reduced Size */}
+            {/* Subheadline */}
             <motion.p
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -79,7 +77,7 @@ export default function Hero() {
               {content.subheadline}
             </motion.p>
 
-            {/* CTAs - Compact Size */}
+            {/* CTAs */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}

@@ -63,6 +63,14 @@
   }
 }
 
+/* Custom container for 18-20% margins */
+@layer components {
+  .content-container {
+    @apply mx-auto px-6 sm:px-8 lg:px-[10%] xl:px-[12%] 2xl:px-[15%];
+    max-width: 1600px;
+  }
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;

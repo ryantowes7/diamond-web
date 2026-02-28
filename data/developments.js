@@ -1,187 +1,374 @@
 /**
- * Development Projects Data - Bilingual
- * Diamond Group Website
+ * Development Projects Data - Diamond Group Jember
+ * All projects located in Jember, East Java with different sub-districts
  */
 
 export const developments = [
   {
-    id: 'diamond-city',
-    name: 'Diamond City',
+    id: 'rinjani-village',
+    name: 'Rinjani Village',
     location: {
-      id: 'Jember, Jawa Timur',
-      en: 'Jember, East Java'
+      id: 'Sumbersari, Jember',
+      en: 'Sumbersari, Jember'
     },
+    kecamatan: 'Sumbersari',
     description: {
-      id: 'Kawasan hunian terpadu dengan konsep modern township, dilengkapi fasilitas komersial, sekolah, dan ruang terbuka hijau yang luas. Flagship project Diamond Group yang menjadi benchmark pengembangan properti di Indonesia.',
-      en: 'Integrated residential area with modern township concept, equipped with commercial facilities, schools, and extensive green open spaces. Diamond Group\'s flagship project that serves as a benchmark for property development in Indonesia.'
+      id: 'Kawasan hunian terpadu dengan konsep modern township yang menjadi flagship project Diamond Group. Dilengkapi fasilitas komersial lengkap, area pendidikan, dan ruang terbuka hijau yang luas untuk kenyamanan keluarga Indonesia.',
+      en: 'Integrated residential area with modern township concept, Diamond Group\'s flagship project. Equipped with complete commercial facilities, educational areas, and extensive green open spaces for Indonesian families\' comfort.'
     },
-    image: 'https://images.unsplash.com/photo-1770665567850-4f5aa4ab7508',
+    image: 'https://images.unsplash.com/photo-1682957205692-6b70103cd372?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxODl8MHwxfHNlYXJjaHwxfHxhZXJpYWwlMjB2aWV3JTIwcmVzaWRlbnRpYWx8ZW58MHx8fHwxNzcxOTM1NDQwfDA&ixlib=rb-4.1.0&q=85',
     featured: true,
     type: {
       id: 'Mixed Development',
       en: 'Mixed Development'
-    }
+    },
+    priceRange: {
+      min: 450000000,
+      max: 850000000,
+      display: {
+        id: 'Rp 450 Juta - Rp 850 Juta',
+        en: 'IDR 450M - IDR 850M'
+      }
+    },
+    landSize: {
+      min: 72,
+      max: 200,
+      display: '72 - 200 m²'
+    },
+    facilities: {
+      id: ['Masjid', 'Taman Bermain', 'Area Komersial', 'Jogging Track', 'Security 24 Jam'],
+      en: ['Mosque', 'Playground', 'Commercial Area', 'Jogging Track', '24/7 Security']
+    },
+    unitsSold: 450,
+    totalUnits: 800
   },
   {
-    id: 'diamond-valley',
-    name: 'Diamond Valley',
+    id: 'diamond-city',
+    name: 'Diamond City',
     location: {
-      id: 'Tangerang, Banten',
-      en: 'Tangerang, Banten'
+      id: 'Patrang, Jember',
+      en: 'Patrang, Jember'
     },
+    kecamatan: 'Patrang',
     description: {
-      id: 'Hunian eksklusif dengan view pegunungan, menawarkan ketenangan dan kemewahan dalam satu kawasan.',
-      en: 'Exclusive residence with mountain views, offering tranquility and luxury in one area.'
+      id: 'Kawasan kota mandiri terpadu dengan konsep mixed-use development. Hunian, komersial, dan fasilitas publik dalam satu lokasi strategis di pusat pertumbuhan Jember.',
+      en: 'Integrated self-sufficient city with mixed-use development concept. Residential, commercial, and public facilities in one strategic location at Jember\'s growth center.'
     },
-    image: 'https://images.unsplash.com/photo-1758936381780-8092bc60e153',
+    image: 'https://images.unsplash.com/photo-1758697664059-607c42554702?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2OTF8MHwxfHNlYXJjaHw0fHxtb2Rlcm4lMjByZXNpZGVudGlhbCUyMGhvdXNpbmclMjBkZXZlbG9wbWVudHxlbnwwfHx8fDE3NzE5MzU0MzV8MA&ixlib=rb-4.1.0&q=85',
+    featured: false,
+    type: {
+      id: 'Mixed Development',
+      en: 'Mixed Development'
+    },
+    priceRange: {
+      min: 500000000,
+      max: 1200000000,
+      display: {
+        id: 'Rp 500 Juta - Rp 1,2 Miliar',
+        en: 'IDR 500M - IDR 1.2B'
+      }
+    },
+    landSize: {
+      min: 90,
+      max: 250,
+      display: '90 - 250 m²'
+    },
+    facilities: {
+      id: ['Mall', 'Rumah Sakit', 'Sekolah', 'Hotel', 'Convention Center'],
+      en: ['Mall', 'Hospital', 'School', 'Hotel', 'Convention Center']
+    },
+    unitsSold: 380,
+    totalUnits: 1000
+  },
+  {
+    id: 'kampus-village',
+    name: 'Kampus Village',
+    location: {
+      id: 'Sumbersari, Jember',
+      en: 'Sumbersari, Jember'
+    },
+    kecamatan: 'Sumbersari',
+    description: {
+      id: 'Hunian strategis dekat kawasan kampus, ideal untuk investasi kos-kosan, rumah keluarga muda, dan dosen. Akses mudah ke Universitas Jember dan fasilitas pendidikan lainnya.',
+      en: 'Strategic housing near campus area, ideal for boarding house investment, young families, and lecturers. Easy access to Jember University and other educational facilities.'
+    },
+    image: 'https://images.unsplash.com/photo-1760268076665-21307d384f44?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2OTF8MHwxfHNlYXJjaHwzfHxtb2Rlcm4lMjByZXNpZGVudGlhbCUyMGhvdXNpbmclMjBkZXZlbG9wbWVudHxlbnwwfHx8fDE3NzE5MzU0MzV8MA&ixlib=rb-4.1.0&q=85',
     featured: false,
     type: {
       id: 'Residensial',
       en: 'Residential'
-    }
+    },
+    priceRange: {
+      min: 350000000,
+      max: 650000000,
+      display: {
+        id: 'Rp 350 Juta - Rp 650 Juta',
+        en: 'IDR 350M - IDR 650M'
+      }
+    },
+    landSize: {
+      min: 60,
+      max: 120,
+      display: '60 - 120 m²'
+    },
+    facilities: {
+      id: ['Taman', 'Pos Keamanan', 'Area Parkir', 'WiFi Corner'],
+      en: ['Park', 'Security Post', 'Parking Area', 'WiFi Corner']
+    },
+    unitsSold: 220,
+    totalUnits: 350
   },
   {
-    id: 'diamond-heights',
-    name: 'Diamond Heights',
+    id: 'diamond-cluster-griya-mangli',
+    name: 'Diamond Cluster Griya Mangli Indah',
     location: {
-      id: 'Jakarta Selatan',
-      en: 'South Jakarta'
+      id: 'Kaliwates, Jember',
+      en: 'Kaliwates, Jember'
     },
+    kecamatan: 'Kaliwates',
     description: {
-      id: 'Apartemen mewah dengan fasilitas premium dan akses mudah ke pusat bisnis Jakarta.',
-      en: 'Luxury apartments with premium facilities and easy access to Jakarta business district.'
+      id: 'Cluster premium dengan desain modern minimalis di lokasi strategis pusat kota. Hunian eksklusif dengan konsep gated community dan fasilitas premium untuk keluarga modern.',
+      en: 'Premium cluster with modern minimalist design in strategic city center location. Exclusive residence with gated community concept and premium facilities for modern families.'
     },
-    image: 'https://images.unsplash.com/photo-1762838039677-d8dcb61ad942',
+    image: 'https://images.unsplash.com/photo-1755914815623-9fc97b0aef37?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzNTl8MHwxfHNlYXJjaHwxfHxob3VzaW5nJTIwcHJvZmVzc2lvbmFsfGVufDB8fHx8MTc3MTkzNTQ0Nnww&ixlib=rb-4.1.0&q=85',
     featured: false,
     type: {
-      id: 'Hunian Vertikal',
-      en: 'Vertical Living'
-    }
+      id: 'Cluster Premium',
+      en: 'Premium Cluster'
+    },
+    priceRange: {
+      min: 650000000,
+      max: 1100000000,
+      display: {
+        id: 'Rp 650 Juta - Rp 1,1 Miliar',
+        en: 'IDR 650M - IDR 1.1B'
+      }
+    },
+    landSize: {
+      min: 100,
+      max: 200,
+      display: '100 - 200 m²'
+    },
+    facilities: {
+      id: ['Clubhouse', 'Swimming Pool', 'Fitness Center', 'Mini Market', 'CCTV 24 Jam'],
+      en: ['Clubhouse', 'Swimming Pool', 'Fitness Center', 'Mini Market', '24/7 CCTV']
+    },
+    unitsSold: 145,
+    totalUnits: 200
   },
   {
-    id: 'diamond-park',
-    name: 'Diamond Park',
+    id: 'rajawali-residence',
+    name: 'Rajawali Residence',
     location: {
-      id: 'Surabaya, Jawa Timur',
-      en: 'Surabaya, East Java'
+      id: 'Patrang, Jember',
+      en: 'Patrang, Jember'
     },
+    kecamatan: 'Patrang',
     description: {
-      id: 'Kawasan hunian dengan konsep park living, menghadirkan kesegaran udara dan ruang hijau di setiap sudut.',
-      en: 'Residential area with park living concept, providing fresh air and green spaces in every corner.'
+      id: 'Perumahan strategis dengan akses mudah ke pusat kota dan fasilitas umum. Cocok untuk keluarga yang menginginkan lokasi strategis dengan harga terjangkau.',
+      en: 'Strategic housing with easy access to city center and public facilities. Perfect for families seeking strategic location with affordable prices.'
     },
-    image: 'https://images.unsplash.com/photo-1770936996689-e2a9d61a144f',
+    image: 'https://images.unsplash.com/photo-1759670509449-23a374206521?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2OTF8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjByZXNpZGVudGlhbCUyMGhvdXNpbmclMjBkZXZlbG9wbWVudHxlbnwwfHx8fDE3NzE5MzU0MzV8MA&ixlib=rb-4.1.0&q=85',
     featured: false,
     type: {
       id: 'Residensial',
       en: 'Residential'
-    }
+    },
+    priceRange: {
+      min: 400000000,
+      max: 700000000,
+      display: {
+        id: 'Rp 400 Juta - Rp 700 Juta',
+        en: 'IDR 400M - IDR 700M'
+      }
+    },
+    landSize: {
+      min: 72,
+      max: 150,
+      display: '72 - 150 m²'
+    },
+    facilities: {
+      id: ['Masjid', 'Taman', 'Pos Keamanan', 'Jalan Lebar'],
+      en: ['Mosque', 'Park', 'Security Post', 'Wide Road']
+    },
+    unitsSold: 310,
+    totalUnits: 450
   },
   {
-    id: 'diamond-resort',
-    name: 'Diamond Resort',
+    id: 'green-hill-boulevard',
+    name: 'Green Hill Boulevard',
     location: {
-      id: 'Bali',
-      en: 'Bali'
+      id: 'Patrang, Jember',
+      en: 'Patrang, Jember'
     },
+    kecamatan: 'Patrang',
     description: {
-      id: 'Villa mewah dengan pemandangan laut, sempurna untuk investasi properti pariwisata.',
-      en: 'Luxury villas with ocean views, perfect for tourism property investment.'
+      id: 'Hunian hijau dengan konsep eco-living dan pemandangan perbukitan. Udara segar, lingkungan asri, dan desain ramah lingkungan untuk kehidupan sehat keluarga.',
+      en: 'Green residence with eco-living concept and hill views. Fresh air, beautiful environment, and eco-friendly design for healthy family living.'
     },
-    image: 'https://images.unsplash.com/photo-1762539744669-cb85948f1675',
-    featured: false,
-    type: {
-      id: 'Resort Living',
-      en: 'Resort Living'
-    }
-  },
-  {
-    id: 'diamond-garden',
-    name: 'Diamond Garden',
-    location: {
-      id: 'Bandung, Jawa Barat',
-      en: 'Bandung, West Java'
-    },
-    description: {
-      id: 'Hunian asri dengan taman luas dan udara sejuk khas Bandung.',
-      en: 'Beautiful residence with spacious gardens and Bandung\'s cool fresh air.'
-    },
-    image: 'https://images.unsplash.com/photo-1767884163190-f8ca72b2e48f',
-    featured: false,
-    type: {
-      id: 'Residensial',
-      en: 'Residential'
-    }
-  },
-  {
-    id: 'diamond-square',
-    name: 'Diamond Square',
-    location: {
-      id: 'Semarang, Jawa Tengah',
-      en: 'Semarang, Central Java'
-    },
-    description: {
-      id: 'Kawasan komersial dan hunian terintegrasi di pusat kota Semarang.',
-      en: 'Integrated commercial and residential area in the heart of Semarang.'
-    },
-    image: 'https://images.unsplash.com/photo-1758304480344-f8d0de5f4f25',
-    featured: false,
-    type: {
-      id: 'Komersial',
-      en: 'Commercial'
-    }
-  },
-  {
-    id: 'diamond-green',
-    name: 'Diamond Green',
-    location: {
-      id: 'Malang, Jawa Timur',
-      en: 'Malang, East Java'
-    },
-    description: {
-      id: 'Eco-friendly housing dengan sistem pengelolaan air dan energi berkelanjutan.',
-      en: 'Eco-friendly housing with sustainable water and energy management systems.'
-    },
-    image: 'https://images.unsplash.com/photo-1505843513577-22bb7d21e455',
+    image: 'https://images.pexels.com/photos/5598008/pexels-photo-5598008.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
     featured: false,
     type: {
       id: 'Eco Living',
       en: 'Eco Living'
-    }
+    },
+    priceRange: {
+      min: 550000000,
+      max: 950000000,
+      display: {
+        id: 'Rp 550 Juta - Rp 950 Juta',
+        en: 'IDR 550M - IDR 950M'
+      }
+    },
+    landSize: {
+      min: 100,
+      max: 250,
+      display: '100 - 250 m²'
+    },
+    facilities: {
+      id: ['Jogging Track', 'Taman Luas', 'Area Hijau', 'View Point', 'Organic Garden'],
+      en: ['Jogging Track', 'Large Park', 'Green Area', 'View Point', 'Organic Garden']
+    },
+    unitsSold: 180,
+    totalUnits: 300
   },
   {
-    id: 'diamond-hills',
-    name: 'Diamond Hills',
+    id: 'gumuk-mas-permai',
+    name: 'Gumuk Mas Permai',
     location: {
-      id: 'Yogyakarta',
-      en: 'Yogyakarta'
+      id: 'Gumukmas, Jember',
+      en: 'Gumukmas, Jember'
     },
+    kecamatan: 'Gumukmas',
     description: {
-      id: 'Hunian premium di dataran tinggi dengan pemandangan Gunung Merapi.',
-      en: 'Premium residence in the highlands with views of Mount Merapi.'
+      id: 'Hunian nyaman untuk keluarga dengan harga terjangkau di kawasan berkembang Gumukmas. Lingkungan tenang dan aman, cocok untuk investasi jangka panjang.',
+      en: 'Comfortable housing for families with affordable prices in developing Gumukmas area. Quiet and safe environment, perfect for long-term investment.'
     },
-    image: 'https://images.unsplash.com/photo-1561026000-94e070de0909',
+    image: 'https://images.unsplash.com/photo-1759670524695-8d78b05b385b?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2OTF8MHwxfHNlYXJjaHwyfHxtb2Rlcm4lMjByZXNpZGVudGlhbCUyMGhvdXNpbmclMjBkZXZlbG9wbWVudHxlbnwwfHx8fDE3NzE5MzU0MzV8MA&ixlib=rb-4.1.0&q=85',
     featured: false,
     type: {
-      id: 'Highland Living',
-      en: 'Highland Living'
-    }
+      id: 'Residensial',
+      en: 'Residential'
+    },
+    priceRange: {
+      min: 300000000,
+      max: 550000000,
+      display: {
+        id: 'Rp 300 Juta - Rp 550 Juta',
+        en: 'IDR 300M - IDR 550M'
+      }
+    },
+    landSize: {
+      min: 70,
+      max: 140,
+      display: '70 - 140 m²'
+    },
+    facilities: {
+      id: ['Masjid', 'Taman Bermain', 'Pos Keamanan', 'Akses Mudah'],
+      en: ['Mosque', 'Playground', 'Security Post', 'Easy Access']
+    },
+    unitsSold: 260,
+    totalUnits: 400
   },
   {
-    id: 'diamond-coast',
-    name: 'Diamond Coast',
+    id: 'grand-permata-ajung',
+    name: 'Grand Permata Ajung',
     location: {
-      id: 'Makassar, Sulawesi Selatan',
-      en: 'Makassar, South Sulawesi'
+      id: 'Ajung, Jember',
+      en: 'Ajung, Jember'
     },
+    kecamatan: 'Ajung',
     description: {
-      id: 'Kawasan hunian modern di tepi pantai dengan akses private beach.',
-      en: 'Modern residential area by the beach with private beach access.'
+      id: 'Perumahan dengan desain klasik elegan di kawasan Ajung yang berkembang pesat. Arsitektur timeless dengan sentuhan modern untuk hunian prestisius keluarga.',
+      en: 'Housing with elegant classic design in rapidly developing Ajung area. Timeless architecture with modern touches for prestigious family residence.'
     },
-    image: 'https://images.unsplash.com/photo-1561027509-ec65ce5574f9',
+    image: 'https://images.unsplash.com/photo-1763257708545-18addc8bef6b?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxODl8MHwxfHNlYXJjaHw0fHxhZXJpYWwlMjB2aWV3JTIwcmVzaWRlbnRpYWx8ZW58MHx8fHwxNzcxOTM1NDQwfDA&ixlib=rb-4.1.0&q=85',
     featured: false,
     type: {
-      id: 'Coastal Living',
-      en: 'Coastal Living'
-    }
+      id: 'Residensial Premium',
+      en: 'Premium Residential'
+    },
+    priceRange: {
+      min: 480000000,
+      max: 800000000,
+      display: {
+        id: 'Rp 480 Juta - Rp 800 Juta',
+        en: 'IDR 480M - IDR 800M'
+      }
+    },
+    landSize: {
+      min: 90,
+      max: 180,
+      display: '90 - 180 m²'
+    },
+    facilities: {
+      id: ['Taman Klasik', 'Gate Premium', 'Jalan Paving', 'Streetlight'],
+      en: ['Classic Garden', 'Premium Gate', 'Paving Road', 'Streetlight']
+    },
+    unitsSold: 190,
+    totalUnits: 320
+  },
+  {
+    id: 'the-kayana',
+    name: 'The Kayana',
+    location: {
+      id: 'Kaliwates, Jember',
+      en: 'Kaliwates, Jember'
+    },
+    kecamatan: 'Kaliwates',
+    description: {
+      id: 'Premium residence dengan arsitektur kontemporer di pusat kota Jember. Hunian super premium dengan teknologi smart home dan design international standard.',
+      en: 'Premium residence with contemporary architecture in Jember city center. Super premium housing with smart home technology and international standard design.'
+    },
+    image: 'https://images.unsplash.com/photo-1577485370453-90b0b6e29591?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzNTl8MHwxfHNlYXJjaHwyfHxob3VzaW5nJTIwcHJvZmVzc2lvbmFsfGVufDB8fHx8MTc3MTkzNTQ0Nnww&ixlib=rb-4.1.0&q=85',
+    featured: false,
+    type: {
+      id: 'Super Premium',
+      en: 'Super Premium'
+    },
+    priceRange: {
+      min: 900000000,
+      max: 1800000000,
+      display: {
+        id: 'Rp 900 Juta - Rp 1,8 Miliar',
+        en: 'IDR 900M - IDR 1.8B'
+      }
+    },
+    landSize: {
+      min: 150,
+      max: 350,
+      display: '150 - 350 m²'
+    },
+    facilities: {
+      id: ['Smart Home', 'Private Pool', 'Home Theater', 'Sky Garden', 'Concierge Service'],
+      en: ['Smart Home', 'Private Pool', 'Home Theater', 'Sky Garden', 'Concierge Service']
+    },
+    unitsSold: 65,
+    totalUnits: 120
   }
 ]
+
+// Helper functions
+export const getProjectTypes = () => {
+  const types = new Set()
+  developments.forEach(dev => {
+    types.add(dev.type.id)
+  })
+  return Array.from(types)
+}
+
+export const getKecamatan = () => {
+  const kecamatan = new Set()
+  developments.forEach(dev => {
+    kecamatan.add(dev.kecamatan)
+  })
+  return Array.from(kecamatan).sort()
+}
+
+export const getFeaturedProject = () => {
+  return developments.find(dev => dev.featured)
+}
+
+export const getProjectById = (id) => {
+  return developments.find(dev => dev.id === id)
+}

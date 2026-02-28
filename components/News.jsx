@@ -34,17 +34,17 @@ export default function News() {
   const readMoreShortText = language === 'id' ? 'Selengkapnya' : 'More'
 
   return (
-    <section id="berita" className="py-12 lg:py-20 bg-gradient-to-b from-white to-gray-50">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="berita" className="py-16 lg:py-20 bg-gradient-to-b from-white to-gray-50">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-10 lg:mb-14"
+          className="text-center mb-12 lg:mb-14"
         >
-          <h2 className="text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 mb-3 tracking-tight">
+          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-3 tracking-tight">
             {sectionTitle}
           </h2>
           <p className="text-base lg:text-lg text-gray-600 max-w-2xl mx-auto">
@@ -52,19 +52,19 @@ export default function News() {
           </p>
         </motion.div>
 
-        {/* News Grid - Perfect Alignment: Featured spans 3 rows = 3 small articles */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 auto-rows-fr">
-          {/* Featured Article - Spans 3 rows to match 3 small articles */}
+        {/* News Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          {/* Featured Article */}
           {featured && (
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
               className="lg:row-span-3"
             >
               <Card className="group overflow-hidden rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500 h-full">
-                <div className="relative h-full min-h-[500px] lg:min-h-[600px]">
+                <div className="relative h-full min-h-[450px] lg:min-h-[550px]">
                   <img
                     src={featured.image}
                     alt={getText(featured.title)}
@@ -72,14 +72,12 @@ export default function News() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
                   
-                  {/* Category Badge */}
                   <div className="absolute top-4 left-4">
                     <span className="px-3 py-1.5 bg-orange-600 text-white text-xs font-medium rounded-full">
                       {getText(featured.category)}
                     </span>
                   </div>
 
-                  {/* Content */}
                   <div className="absolute bottom-0 left-0 right-0 p-5 lg:p-6">
                     <div className="flex items-center gap-2 text-white/80 text-sm mb-2">
                       <Calendar size={14} />
@@ -101,7 +99,7 @@ export default function News() {
             </motion.div>
           )}
 
-          {/* Other Articles - Each takes exactly 1 row */}
+          {/* Other Articles */}
           {others.map((article, index) => (
             <motion.div
               key={article.id}
@@ -109,7 +107,6 @@ export default function News() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="lg:row-span-1"
             >
               <Card className="group overflow-hidden rounded-xl shadow-md hover:shadow-lg transition-all duration-500 h-full">
                 <div className="flex flex-col sm:flex-row gap-0 sm:gap-4 h-full">
