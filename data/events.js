@@ -94,12 +94,19 @@ export const events = [
   }
 ]
 
-// Helper function to format date
+// Helper function to format date with abbreviated month
 export const formatEventDate = (dateString, locale = 'id') => {
   const date = new Date(dateString)
-  return new Intl.DateTimeFormat(locale === 'id' ? 'id-ID' : 'en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric'
-  }).format(date)
+  const day = date.getDate()
+  const year = date.getFullYear()
+  const month = date.getMonth()
+  
+  // Indonesian abbreviated months
+  const monthsID = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agt', 'Sep', 'Okt', 'Nov', 'Des']
+  // English abbreviated months
+  const monthsEN = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+  
+  const monthName = locale === 'id' ? monthsID[month] : monthsEN[month]
+  
+  return `${day} ${monthName} ${year}`
 }

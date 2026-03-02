@@ -63,35 +63,35 @@ export default function News() {
               transition={{ duration: 0.6 }}
               className="lg:row-span-3"
             >
-              <Card className="group overflow-hidden rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500 h-full">
+              <Card className="group overflow-hidden rounded-lg shadow-sm hover:shadow-md transition-all duration-500 h-full">
                 <div className="relative h-full min-h-[450px] lg:min-h-[550px]">
                   <img
                     src={featured.image}
                     alt={getText(featured.title)}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
                   
                   <div className="absolute top-4 left-4">
-                    <span className="px-3 py-1.5 bg-orange-600 text-white text-xs font-medium rounded-full">
+                    <span className="px-2.5 py-1 bg-orange-600 text-white text-xs font-medium rounded-md shadow-sm">
                       {getText(featured.category)}
                     </span>
                   </div>
 
                   <div className="absolute bottom-0 left-0 right-0 p-5 lg:p-6">
-                    <div className="flex items-center gap-2 text-white/80 text-sm mb-2">
+                    <div className="flex items-center gap-2 text-white/80 text-xs mb-2">
                       <Calendar size={14} />
-                      <span>{formatDate(featured.date)}</span>
+                      <span className="font-normal">{formatDate(featured.date)}</span>
                     </div>
-                    <h3 className="text-xl lg:text-2xl font-bold text-white mb-2 leading-tight">
+                    <h3 className="text-lg lg:text-xl font-semibold text-white mb-2 leading-tight">
                       {getText(featured.title)}
                     </h3>
-                    <p className="text-white/90 text-sm mb-3 line-clamp-2">
+                    <p className="text-white/90 text-xs lg:text-sm mb-3 line-clamp-2 font-light leading-snug">
                       {getText(featured.excerpt)}
                     </p>
-                    <button className="inline-flex items-center gap-2 text-white font-medium text-sm hover:gap-3 transition-all duration-300">
+                    <button className="inline-flex items-center gap-2 text-white font-medium text-xs hover:gap-3 transition-all duration-300">
                       {readMoreText}
-                      <ArrowRight size={16} />
+                      <ArrowRight size={14} />
                     </button>
                   </div>
                 </div>
@@ -107,41 +107,44 @@ export default function News() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
+              className="group"
             >
-              <Card className="group overflow-hidden rounded-xl shadow-md hover:shadow-lg transition-all duration-500 h-full">
-                <div className="flex flex-col sm:flex-row gap-0 sm:gap-4 h-full">
-                  <div className="relative w-full sm:w-40 flex-shrink-0 h-40 sm:h-auto">
-                    <img
-                      src={article.image}
-                      alt={getText(article.title)}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    />
-                  </div>
-                  <div className="flex-1 p-4 flex flex-col justify-between">
-                    <div>
-                      <div className="flex items-center gap-2 mb-2">
-                        <span className="px-2 py-0.5 bg-orange-100 text-orange-700 text-xs font-medium rounded-full">
-                          {getText(article.category)}
-                        </span>
-                        <span className="text-gray-500 text-xs flex items-center gap-1">
-                          <Calendar size={12} />
-                          {formatDate(article.date)}
-                        </span>
-                      </div>
-                      <h3 className="text-base lg:text-lg font-bold text-gray-900 mb-1.5 leading-tight group-hover:text-orange-600 transition-colors duration-300">
-                        {getText(article.title)}
-                      </h3>
-                      <p className="text-gray-600 text-sm mb-2 line-clamp-2">
-                        {getText(article.excerpt)}
-                      </p>
-                    </div>
-                    <button className="inline-flex items-center gap-1 text-orange-600 font-medium text-xs hover:gap-2 transition-all duration-300 self-start">
-                      {readMoreShortText}
-                      <ArrowRight size={14} />
-                    </button>
+              {/* Image Card - Landscape Aspect Ratio 16:9 */}
+              <div className="relative overflow-hidden rounded-lg shadow-sm hover:shadow-md transition-all duration-300 mb-3">
+                <div className="relative w-full" style={{ aspectRatio: '16/9' }}>
+                  <img
+                    src={article.image}
+                    alt={getText(article.title)}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                  
+                  {/* Category Badge */}
+                  <div className="absolute top-3 left-3">
+                    <span className="px-2.5 py-1 bg-white/90 backdrop-blur-sm text-gray-800 text-xs font-normal rounded-md shadow-sm">
+                      {getText(article.category)}
+                    </span>
                   </div>
                 </div>
-              </Card>
+              </div>
+
+              {/* Article Information - Outside Card */}
+              <div className="space-y-2">
+                {/* Title */}
+                <h3 className="text-base lg:text-lg font-medium text-gray-900 leading-tight group-hover:text-orange-600 transition-colors">
+                  {getText(article.title)}
+                </h3>
+
+                {/* Description */}
+                <p className="text-xs lg:text-sm text-gray-600 leading-snug font-light line-clamp-2">
+                  {getText(article.excerpt)}
+                </p>
+
+                {/* Date */}
+                <div className="flex items-center gap-1.5 text-xs text-gray-500 pt-1">
+                  <Calendar className="text-orange-600 flex-shrink-0" size={14} />
+                  <span className="font-normal">{formatDate(article.date)}</span>
+                </div>
+              </div>
             </motion.div>
           ))}
         </div>
