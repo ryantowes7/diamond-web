@@ -4,6 +4,8 @@ import { useEffect, useRef, useState } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { corporateStatement, statistics } from '@/data/corporate'
 import { useLanguage } from '@/contexts/LanguageContext'
+import { Shield, Heart, Lightbulb, ArrowRight } from 'lucide-react'
+import Link from 'next/link'
 
 function AnimatedCounter({ value, suffix = '', duration = 2000 }) {
   const [count, setCount] = useState(0)
@@ -34,12 +36,7 @@ function AnimatedCounter({ value, suffix = '', duration = 2000 }) {
     }
 
     animationFrame = requestAnimationFrame(animate)
-
-    return () => {
-      if (animationFrame) {
-        cancelAnimationFrame(animationFrame)
-      }
-    }
+    return () => cancelAnimationFrame(animationFrame)
   }, [isInView, value, duration])
 
   return (
@@ -49,88 +46,153 @@ function AnimatedCounter({ value, suffix = '', duration = 2000 }) {
   )
 }
 
+function ImageCarousel({ images }) {
+  const [currentIndex, setCurrentIndex] = useState(0)
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % images.length)
+    }, 4000)
+
+    return () => clearInterval(interval)
+  }, [images.length])
+
+  return (
+    <div className="relative w-full h-full">
+      {images.map((image, index) => (
+        <motion.div
+          key={index}
+          initial={{ opacity: 0 }}
+          animate={{
+            opacity: index === currentIndex ? 1 : 0,
+            scale: index === currentIndex ? 1 : 1.03
+          }}
+          transition={{ duration: 0.8 }}
+          className="absolute inset-0"
+        >
+          <img
+            src={image}
+            alt={`Diamond Group ${index + 1}`}
+            className="w-full h-full object-cover rounded-xl"
+          />
+        </motion.div>
+      ))}
+    </div>
+  )
+}
+
 export default function CorporateStatement() {
   const { language } = useLanguage()
 
-  // Helper function to get localized text
   const getText = (obj) => {
     if (typeof obj === 'string') return obj
     return obj?.[language] || obj?.id || obj?.en || ''
   }
 
-  // Get localized statistics array
   const stats = statistics[language] || statistics.id || []
+  const values = corporateStatement.values[language] || corporateStatement.values.id || []
+
+  const iconMap = {
+    Shield,
+    Heart,
+    Lightbulb
+  }
 
   return (
-    <section id="tentang" className="py-16 lg:py-20 bg-white">
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
-        {/* Statement Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center mb-12 lg:mb-16">
-          {/* Left: Big Typography Statement */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4 leading-tight tracking-tight">
-              {getText(corporateStatement.headline)}
-            </h2>
-            <p className="text-base lg:text-lg text-gray-600 leading-relaxed">
-              {getText(corporateStatement.description)}
-            </p>
-          </motion.div>
+    <section id="tentang" className="bg-white">
 
-          {/* Right: Supporting Image */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="relative"
-          >
-            <div className="relative rounded-2xl overflow-hidden shadow-xl aspect-square">
-              <img
-                src={corporateStatement.image}
-                alt="Diamond Group Corporate"
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-tr from-orange-600/20 to-transparent" />
-            </div>
-            {/* Decorative Element */}
-            <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl -z-10 opacity-20" />
-          </motion.div>
-        </div>
-
-        {/* Statistics Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-        >
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+      {/* ================= STATISTICS (COMPACT) ================= */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+        className="bg-gray-50 py-8 border-y border-gray-200"
+      >
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="grid grid-cols-3">
             {stats.map((stat, index) => (
-              <motion.div
+              <div
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="text-center"
+                className={`text-center py-4 ${
+                  index !== stats.length - 1 ? 'border-r border-gray-300' : ''
+                }`}
               >
-                <div className="mb-1.5">
-                  <span className="text-3xl lg:text-4xl font-bold bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">
-                    <AnimatedCounter value={stat.value} suffix={stat.suffix} />
-                  </span>
+                <div className="text-3xl lg:text-4xl font-bold bg-gradient-to-r from-orange-500 to-amber-600 bg-clip-text text-transparent">
+                  <AnimatedCounter value={stat.value} suffix={stat.suffix} />
                 </div>
-                <p className="text-sm lg:text-base text-gray-600 font-medium tracking-wide">
+                <p className="text-xs text-[#0f172a] font-medium tracking-wide mt-2">
                   {stat.label}
                 </p>
-              </motion.div>
+              </div>
             ))}
           </div>
-        </motion.div>
+        </div>
+      </motion.div>
+
+      {/* ================= CORPORATE STATEMENT ================= */}
+      <div className="py-16">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12">
+          <div className="grid lg:grid-cols-2 gap-12 items-stretch">
+
+            {/* LEFT CONTENT */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="flex flex-col justify-between"
+            >
+              <div>
+                <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight">
+                  {getText(corporateStatement.headline)}
+                </h2>
+
+                <p className="text-base lg:text-lg text-gray-600 leading-relaxed mt-6 max-w-xl">
+                  {getText(corporateStatement.description)}
+                </p>
+              </div>
+
+              <div className="mt-10 flex flex-wrap items-center gap-10">
+
+                {values.map((value, index) => {
+                  const Icon = iconMap[value.icon]
+                  return (
+                    <div key={index} className="flex items-center gap-3">
+                      <Icon className="w-5 h-5 text-gray-700" strokeWidth={1.5} />
+                      <span className="text-sm text-gray-700 font-medium">
+                        {value.label}
+                      </span>
+                    </div>
+                  )
+                })}
+
+                {/* Lihat Profil Sejajar */}
+                <Link
+                  href="/tentang-kami"
+                  className="inline-flex items-center text-sm font-semibold text-gray-900 group ml-auto"
+                >
+                  {language === 'id' ? 'Lihat Profil' : 'See Profile'}
+                  <ArrowRight className="ml-2 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+                </Link>
+
+              </div>
+            </motion.div>
+
+            {/* RIGHT IMAGE */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              <div className="w-full aspect-[4/3] overflow-hidden rounded-xl">
+                <ImageCarousel images={corporateStatement.images} />
+              </div>
+            </motion.div>
+
+          </div>
+        </div>
       </div>
     </section>
   )

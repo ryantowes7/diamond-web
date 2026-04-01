@@ -5,59 +5,65 @@
 
 export const corporateStatement = {
   headline: {
-    id: 'Membangun Lebih dari Sekadar Rumah',
-    en: 'Building More Than Just Houses'
+    id: 'Membangun Hunian Menumbuhkan Harapan',
+    en: 'Building Homes, Growing Hope'
   },
   description: {
-    id: 'Diamond Group adalah developer properti nasional yang berkomitmen membangun komunitas berkelanjutan dengan standar kualitas internasional. Dengan pengalaman lebih dari 10 tahun, kami telah menjadi pilihan utama keluarga Indonesia untuk hunian impian mereka.',
-    en: 'Diamond Group is a national property developer committed to building sustainable communities with international quality standards. With over 10 years of experience, we have become the primary choice for Indonesian families for their dream homes.'
+    id: 'Dari hunian, Diamond Group secara konsisten mendorong inovasi kuat untuk membangun masa depan yang lebih baik.',
+    en: 'From housing, Diamond Group consistently drives strong innovation to build a better future.'
   },
-  image: 'https://images.pexels.com/photos/34840277/pexels-photo-34840277.jpeg'
+  images: [
+    'https://images.unsplash.com/photo-1512917774080-9991f1c4c750',
+    'https://images.unsplash.com/photo-1564156280315-1d42b4651629',
+    'https://images.unsplash.com/photo-1602941525421-8f8b81d3edbb'
+  ],
+  values: {
+    id: [
+      { icon: 'Shield', label: 'Integritas' },
+      { icon: 'Heart', label: 'Loyalitas' },
+      { icon: 'Lightbulb', label: 'Inovasi' }
+    ],
+    en: [
+      { icon: 'Shield', label: 'Integrity' },
+      { icon: 'Heart', label: 'Loyalty' },
+      { icon: 'Lightbulb', label: 'Innovation' }
+    ]
+  }
 }
 
 export const statistics = {
   id: [
     {
-      label: 'Kawasan Aktif',
-      value: 12,
-      suffix: '+'
-    },
-    {
-      label: 'Unit Terbangun',
-      value: 5000,
-      suffix: '+'
-    },
-    {
-      label: 'Tahun Pengalaman',
+      label: 'Tahun',
       value: 10,
       suffix: '+'
     },
     {
-      label: 'Kepuasan Pelanggan',
-      value: 95,
-      suffix: '%'
+      label: 'Perumahan',
+      value: 9,
+      suffix: ''
+    },
+    {
+      label: 'Unit',
+      value: 2500,
+      suffix: '+'
     }
   ],
   en: [
     {
-      label: 'Active Areas',
-      value: 12,
-      suffix: '+'
-    },
-    {
-      label: 'Units Built',
-      value: 5000,
-      suffix: '+'
-    },
-    {
-      label: 'Years Experience',
+      label: 'Years',
       value: 10,
       suffix: '+'
     },
     {
-      label: 'Customer Satisfaction',
-      value: 95,
-      suffix: '%'
+      label: 'Housing',
+      value: 9,
+      suffix: ''
+    },
+    {
+      label: 'Units',
+      value: 2500,
+      suffix: '+'
     }
   ]
 }

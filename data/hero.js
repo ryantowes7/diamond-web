@@ -5,8 +5,8 @@
 
 export const heroData = {
   id: {
-    headline: 'Membangun Masa Depan Berkelanjutan',
-    subheadline: 'Developer properti terpercaya dengan 12+ kawasan perumahan berkualitas di seluruh Indonesia',
+    headline: 'Membangun Hunian Menumbuhkan Harapan',
+    subheadline: 'Developer properti terpercaya dengan 9 kawasan Perumahan berkualitas di Jember',
     ctas: [
       {
         label: 'Jelajahi Proyek Kami',
@@ -21,8 +21,8 @@ export const heroData = {
     ]
   },
   en: {
-    headline: 'Building a Sustainable Future',
-    subheadline: 'Trusted property developer with 12+ quality residential areas throughout Indonesia',
+    headline: 'Building Homes, Nurturing Hope',
+    subheadline: 'Trusted property developer with 9 quality residential areas in Jember',
     ctas: [
       {
         label: 'Explore Our Projects',

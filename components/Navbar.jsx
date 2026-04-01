@@ -80,56 +80,28 @@ export default function Navbar() {
               className="flex items-center gap-3 cursor-pointer"
               onClick={() => handleNavigation('/')}
             >
-              {/* Logo Icon */}
-              <div className={`flex items-center justify-center w-10 h-10 lg:w-12 lg:h-12 rounded-lg transition-all duration-300 ${
-                scrolled 
-                  ? 'bg-gradient-to-br from-amber-500 via-orange-500 to-red-500' 
-                  : 'bg-gradient-to-br from-amber-400 via-orange-400 to-red-400'
-              }`}>
-                <svg 
-                  viewBox="0 0 24 24" 
-                  fill="none" 
-                  className="w-6 h-6 lg:w-7 lg:h-7"
-                  stroke="currentColor"
-                >
-                  <path 
-                    d="M12 2L2 7L12 12L22 7L12 2Z" 
-                    fill="white" 
-                    stroke="white" 
-                    strokeWidth="1.5" 
-                    strokeLinecap="round" 
-                    strokeLinejoin="round"
-                  />
-                  <path 
-                    d="M2 17L12 22L22 17" 
-                    stroke="white" 
-                    strokeWidth="1.5" 
-                    strokeLinecap="round" 
-                    strokeLinejoin="round"
-                  />
-                  <path 
-                    d="M2 12L12 17L22 12" 
-                    stroke="white" 
-                    strokeWidth="1.5" 
-                    strokeLinecap="round" 
-                    strokeLinejoin="round"
-                  />
-                </svg>
+              {/* Logo - Conditional White/Gold */}
+              <div className="flex items-center justify-center transition-all duration-300">
+                <img 
+                  src={scrolled ? '/logo-diamond-gradasi.png' : '/logo-diamond-putih.png'}
+                  alt="Diamond Group Logo"
+                  className="h-10 lg:h-12 w-auto object-contain transition-all duration-300"
+                />
               </div>
 
               {/* Company Name */}
               <div className="flex flex-col leading-none">
                 <span className={`text-xl lg:text-2xl font-bold tracking-tight transition-colors duration-300 ${
                   scrolled 
-                    ? 'text-transparent bg-clip-text bg-gradient-to-r from-amber-600 via-orange-600 to-red-600' 
+                    ? 'text-transparent bg-clip-text bg-gradient-to-r from-amber-600 via-orange-600 to-orange-600' 
                     : 'text-white'
                 }`}>
-                  diamond group
+                  DIAMOND GROUP
                 </span>
                 <span className={`text-[10px] lg:text-xs tracking-wider font-light uppercase mt-0.5 ${
                   scrolled ? 'text-gray-600' : 'text-white/80'
                 }`}>
-                  Building Excellence
+                  Property Jember
                 </span>
               </div>
             </motion.div>
