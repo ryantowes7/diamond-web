@@ -37,5 +37,5 @@ export const heroData = {
     ]
   },
   videoUrl: 'https://cdn.coverr.co/videos/coverr-aerial-view-of-a-residential-neighborhood-5011/1080p.mp4',
-  fallbackImage: 'https://images.unsplash.com/photo-1770665567850-4f5aa4ab7508'
+  fallbackImage: '/uploads/hero-diamond.png'
 }
