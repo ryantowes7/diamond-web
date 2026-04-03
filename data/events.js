@@ -19,7 +19,7 @@ export const events = [
       id: 'The Kayana Sales Gallery, Kaliwates',
       en: 'The Kayana Sales Gallery, Kaliwates'
     },
-    image: 'https://images.unsplash.com/photo-1701589212546-2a1bcd94c5af?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzNTl8MHwxfHNlYXJjaHw0fHxwcm9wZXJ0eSUyMGxhdW5jaHxlbnwwfHx8fDE3NzIyNzc3MTR8MA&ixlib=rb-4.1.0&q=85',
+    image: '/uploads/the-kayana.jpeg',
     type: {
       id: 'Peluncuran Proyek',
       en: 'Project Launch'

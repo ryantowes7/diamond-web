@@ -5,11 +5,11 @@ import { motion } from 'framer-motion'
 export default function VideoShowcase() {
   // VIDEO CONFIGURATION
   // Option 1: Use YouTube URL - set videoType to 'youtube' and provide YouTube video ID
-  // Option 2: Use uploaded video file - set videoType to 'file' and provide filename in /app/frontend/public/videos/
+  // Option 2: Use uploaded video file - set videoType to 'file' and provide filename in /public/videos/
   // Option 3: Use direct video URL - set videoType to 'url' and provide full video URL
   
-  const videoType = 'youtube' // 'youtube' | 'file' | 'url'
-  const videoSource = 'dQw4w9WgXcQ' // YouTube ID, filename (e.g., 'diamond-video.mp4'), or full URL
+  const videoType = 'file' // 'youtube' | 'file' | 'url'
+  const videoSource = 'video-diamond.mp4' // YouTube ID, filename (e.g., 'video-diamond.mp4'), or full URL
   
   // Render video based on type
   const renderVideo = () => {
@@ -28,8 +28,12 @@ export default function VideoShowcase() {
       return (
         <video
           className="absolute inset-0 w-full h-full object-cover"
+          autoPlay
+          loop
+          muted
+          playsInline
           controls
-          preload="metadata"
+          preload="auto"
         >
           <source src={`/videos/${videoSource}`} type="video/mp4" />
           Your browser does not support the video tag.
@@ -39,8 +43,12 @@ export default function VideoShowcase() {
       return (
         <video
           className="absolute inset-0 w-full h-full object-cover"
+          autoPlay
+          loop
+          muted
+          playsInline
           controls
-          preload="metadata"
+          preload="auto"
         >
           <source src={videoSource} type="video/mp4" />
           Your browser does not support the video tag.

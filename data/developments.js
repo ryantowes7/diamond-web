@@ -20,18 +20,18 @@ export const developments = [
       id: 'Kawasan kota mandiri terpadu dengan konsep mixed-use development. Hunian, komersial, dan fasilitas publik dalam satu lokasi strategis di pusat pertumbuhan Jember.',
       en: 'Integrated self-sufficient city with mixed-use development concept. Residential, commercial, and public facilities in one strategic location at Jember\'s growth center.'
     },
-    image: 'https://images.unsplash.com/photo-1758697664059-607c42554702?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2OTF8MHwxfHNlYXJjaHw0fHxtb2Rlcm4lMjByZXNpZGVudGlhbCUyMGhvdXNpbmclMjBkZXZlbG9wbWVudHxlbnwwfHx8fDE3NzE5MzU0MzV8MA&ixlib=rb-4.1.0&q=85',
+    image: '/uploads/diamond-city.jpeg',
     featured: false,
     type: {
       id: 'Mixed Development',
       en: 'Mixed Development'
     },
     priceRange: {
-      min: 500000000,
-      max: 1200000000,
+      min: 165000000,
+      max: 250000000,
       display: {
-        id: 'Rp 500 Juta - Rp 1,2 Miliar',
-        en: 'IDR 500M - IDR 1.2B'
+        id: 'Rp 165 Juta - Rp 250 Juta',
+        en: 'IDR 165M - IDR 250M'
       }
     },
     landSize: {
@@ -62,18 +62,18 @@ export const developments = [
       id: 'Kawasan hunian terpadu dengan konsep modern township yang menjadi flagship project Diamond Group. Dilengkapi fasilitas komersial lengkap, area pendidikan, dan ruang terbuka hijau yang luas untuk kenyamanan keluarga Indonesia.',
       en: 'Integrated residential area with modern township concept, Diamond Group\'s flagship project. Equipped with complete commercial facilities, educational areas, and extensive green open spaces for Indonesian families\' comfort.'
     },
-    image: 'https://images.unsplash.com/photo-1682957205692-6b70103cd372?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxODl8MHwxfHNlYXJjaHwxfHxhZXJpYWwlMjB2aWV3JTIwcmVzaWRlbnRpYWx8ZW58MHx8fHwxNzcxOTM1NDQwfDA&ixlib=rb-4.1.0&q=85',
+    image: '/uploads/rinjani.jpeg',
     featured: true,
     type: {
       id: 'Mixed Development',
       en: 'Mixed Development'
     },
     priceRange: {
-      min: 450000000,
-      max: 850000000,
+      min: 165000000,
+      max: 250000000,
       display: {
-        id: 'Rp 450 Juta - Rp 850 Juta',
-        en: 'IDR 450M - IDR 850M'
+        id: 'Rp 165 Juta - Rp 250 Juta',
+        en: 'IDR 165M - IDR 250M'
       }
     },
     landSize: {
@@ -104,18 +104,18 @@ export const developments = [
       id: 'Hunian strategis dekat kawasan kampus, ideal untuk investasi kos-kosan, rumah keluarga muda, dan dosen. Akses mudah ke Universitas Jember dan fasilitas pendidikan lainnya.',
       en: 'Strategic housing near campus area, ideal for boarding house investment, young families, and lecturers. Easy access to Jember University and other educational facilities.'
     },
-    image: 'https://images.unsplash.com/photo-1760268076665-21307d384f44?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2OTF8MHwxfHNlYXJjaHwzfHxtb2Rlcm4lMjByZXNpZGVudGlhbCUyMGhvdXNpbmclMjBkZXZlbG9wbWVudHxlbnwwfHx8fDE3NzE5MzU0MzV8MA&ixlib=rb-4.1.0&q=85',
+    image: '/uploads/kampus-village.jpeg',
     featured: false,
     type: {
       id: 'Residensial',
       en: 'Residential'
     },
     priceRange: {
-      min: 350000000,
-      max: 650000000,
+      min: 165000000,
+      max: 250000000,
       display: {
-        id: 'Rp 350 Juta - Rp 650 Juta',
-        en: 'IDR 350M - IDR 650M'
+        id: 'Rp 165 Juta - Rp 250 Juta',
+        en: 'IDR 165M - IDR 250M'
       }
     },
     landSize: {
@@ -146,15 +146,15 @@ export const developments = [
       id: 'Cluster premium dengan desain modern minimalis di lokasi strategis pusat kota. Hunian eksklusif dengan konsep gated community dan fasilitas premium untuk keluarga modern.',
       en: 'Premium cluster with modern minimalist design in strategic city center location. Exclusive residence with gated community concept and premium facilities for modern families.'
     },
-    image: 'https://images.unsplash.com/photo-1755914815623-9fc97b0aef37?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzNTl8MHwxfHNlYXJjaHwxfHxob3VzaW5nJTIwcHJvZmVzc2lvbmFsfGVufDB8fHx8MTc3MTkzNTQ0Nnww&ixlib=rb-4.1.0&q=85',
+    image: '/uploads/mangli.jpeg',
     featured: false,
     type: {
       id: 'Cluster Premium',
       en: 'Premium Cluster'
     },
     priceRange: {
-      min: 650000000,
-      max: 1100000000,
+      min: 165000000,
+      max: 250000000,
       display: {
         id: 'Rp 650 Juta - Rp 1,1 Miliar',
         en: 'IDR 650M - IDR 1.1B'
@@ -188,18 +188,18 @@ export const developments = [
       id: 'Perumahan strategis dengan akses mudah ke pusat kota dan fasilitas umum. Cocok untuk keluarga yang menginginkan lokasi strategis dengan harga terjangkau.',
       en: 'Strategic housing with easy access to city center and public facilities. Perfect for families seeking strategic location with affordable prices.'
     },
-    image: 'https://images.unsplash.com/photo-1759670509449-23a374206521?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2OTF8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjByZXNpZGVudGlhbCUyMGhvdXNpbmclMjBkZXZlbG9wbWVudHxlbnwwfHx8fDE3NzE5MzU0MzV8MA&ixlib=rb-4.1.0&q=85',
+    image: '/uploads/rajawali.png',
     featured: false,
     type: {
       id: 'Residensial',
       en: 'Residential'
     },
     priceRange: {
-      min: 400000000,
-      max: 700000000,
+      min: 165000000,
+      max: 250000000,
       display: {
-        id: 'Rp 400 Juta - Rp 700 Juta',
-        en: 'IDR 400M - IDR 700M'
+        id: 'Rp 165 Juta - Rp 250 Juta',
+        en: 'IDR 165M - IDR 250M'
       }
     },
     landSize: {
@@ -230,18 +230,18 @@ export const developments = [
       id: 'Hunian hijau dengan konsep eco-living dan pemandangan perbukitan. Udara segar, lingkungan asri, dan desain ramah lingkungan untuk kehidupan sehat keluarga.',
       en: 'Green residence with eco-living concept and hill views. Fresh air, beautiful environment, and eco-friendly design for healthy family living.'
     },
-    image: 'https://images.pexels.com/photos/5598008/pexels-photo-5598008.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
+    image: '/uploads/green-hill.jpeg',
     featured: false,
     type: {
       id: 'Eco Living',
       en: 'Eco Living'
     },
     priceRange: {
-      min: 550000000,
-      max: 950000000,
+      min: 165000000,
+      max: 250000000,
       display: {
-        id: 'Rp 550 Juta - Rp 950 Juta',
-        en: 'IDR 550M - IDR 950M'
+        id: 'Rp 165 Juta - Rp 250 Juta',
+        en: 'IDR 165M - IDR 250M'
       }
     },
     landSize: {
@@ -272,7 +272,7 @@ export const developments = [
       id: 'Hunian nyaman untuk keluarga dengan harga terjangkau di kawasan berkembang Gumukmas. Lingkungan tenang dan aman, cocok untuk investasi jangka panjang.',
       en: 'Comfortable housing for families with affordable prices in developing Gumukmas area. Quiet and safe environment, perfect for long-term investment.'
     },
-    image: 'https://images.unsplash.com/photo-1759670524695-8d78b05b385b?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2OTF8MHwxfHNlYXJjaHwyfHxtb2Rlcm4lMjByZXNpZGVudGlhbCUyMGhvdXNpbmclMjBkZXZlbG9wbWVudHxlbnwwfHx8fDE3NzE5MzU0MzV8MA&ixlib=rb-4.1.0&q=85',
+    image: 'uploads/gumukmas.jpeg',
     featured: false,
     type: {
       id: 'Residensial',
@@ -314,18 +314,18 @@ export const developments = [
       id: 'Perumahan dengan desain klasik elegan di kawasan Ajung yang berkembang pesat. Arsitektur timeless dengan sentuhan modern untuk hunian prestisius keluarga.',
       en: 'Housing with elegant classic design in rapidly developing Ajung area. Timeless architecture with modern touches for prestigious family residence.'
     },
-    image: 'https://images.unsplash.com/photo-1763257708545-18addc8bef6b?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxODl8MHwxfHNlYXJjaHw0fHxhZXJpYWwlMjB2aWV3JTIwcmVzaWRlbnRpYWx8ZW58MHx8fHwxNzcxOTM1NDQwfDA&ixlib=rb-4.1.0&q=85',
+    image: '/uploads/gp-ajung.jpeg',
     featured: false,
     type: {
       id: 'Residensial Premium',
       en: 'Premium Residential'
     },
     priceRange: {
-      min: 480000000,
-      max: 800000000,
+      min: 165000000,
+      max: 250000000,
       display: {
-        id: 'Rp 480 Juta - Rp 800 Juta',
-        en: 'IDR 480M - IDR 800M'
+        id: 'Rp 165 Juta - Rp 250 Juta',
+        en: 'IDR 165M - IDR 250M'
       }
     },
     landSize: {
@@ -356,18 +356,18 @@ export const developments = [
       id: 'Premium residence dengan arsitektur kontemporer di pusat kota Jember. Hunian super premium dengan teknologi smart home dan design international standard.',
       en: 'Premium residence with contemporary architecture in Jember city center. Super premium housing with smart home technology and international standard design.'
     },
-    image: 'https://images.unsplash.com/photo-1577485370453-90b0b6e29591?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzNTl8MHwxfHNlYXJjaHwyfHxob3VzaW5nJTIwcHJvZmVzc2lvbmFsfGVufDB8fHx8MTc3MTkzNTQ0Nnww&ixlib=rb-4.1.0&q=85',
+    image: '/uploads/the-kayana.jpeg',
     featured: false,
     type: {
       id: 'Super Premium',
       en: 'Super Premium'
     },
     priceRange: {
-      min: 900000000,
-      max: 1800000000,
+      min: 1200000000,
+      max: 1700000000,
       display: {
-        id: 'Rp 900 Juta - Rp 1,8 Miliar',
-        en: 'IDR 900M - IDR 1.8B'
+        id: 'Rp 1,2 Miliar - Rp 1,7 Miliar',
+        en: 'IDR 1.2B - IDR 1.7B'
       }
     },
     landSize: {
