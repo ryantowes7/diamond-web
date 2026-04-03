@@ -230,7 +230,7 @@ export const developments = [
       id: 'Hunian hijau dengan konsep eco-living dan pemandangan perbukitan. Udara segar, lingkungan asri, dan desain ramah lingkungan untuk kehidupan sehat keluarga.',
       en: 'Green residence with eco-living concept and hill views. Fresh air, beautiful environment, and eco-friendly design for healthy family living.'
     },
-    image: '/uploads/green-hill.jpeg',
+    image: '/uploads/greenhill.png',
     featured: false,
     type: {
       id: 'Eco Living',
@@ -279,11 +279,11 @@ export const developments = [
       en: 'Residential'
     },
     priceRange: {
-      min: 300000000,
-      max: 550000000,
+      min: 165000000,
+      max: 250000000,
       display: {
-        id: 'Rp 300 Juta - Rp 550 Juta',
-        en: 'IDR 300M - IDR 550M'
+        id: 'Rp 165 Juta - Rp 250 Juta',
+        en: 'IDR 165M - IDR 250M'
       }
     },
     landSize: {
