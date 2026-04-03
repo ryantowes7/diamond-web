@@ -1,10 +1,26 @@
 'use client'
 
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Calendar, ArrowRight } from 'lucide-react'
-import { newsArticles } from '@/data/news'
 import { Card } from '@/components/ui/card'
 import { useLanguage } from '@/contexts/LanguageContext'
+
+// Default fallback data
+const defaultNewsData = {
+  title: { id: 'Berita & Update', en: 'News & Updates' },
+  articles: [
+    {
+      id: '1',
+      title: { id: 'Diamond Group Raih Penghargaan Best Developer 2025', en: 'Diamond Group Wins Best Developer Award 2025' },
+      excerpt: { id: 'Diamond Group kembali menorehkan prestasi dengan meraih penghargaan Best National Property Developer dalam ajang Indonesia Property Awards 2025.', en: 'Diamond Group once again achieves excellence by winning the Best National Property Developer award at the Indonesia Property Awards 2025.' },
+      category: { id: 'Penghargaan', en: 'Awards' },
+      date: '2025-06-10',
+      image: 'https://images.unsplash.com/photo-1574848296471-28f79a036f79',
+      featured: true
+    }
+  ]
+}
 
 const formatDate = (dateString) => {
   const date = new Date(dateString)
@@ -17,15 +33,42 @@ const formatDate = (dateString) => {
 
 export default function News() {
   const { language } = useLanguage()
-  const featured = newsArticles.find(article => article.featured)
-  const others = newsArticles.filter(article => !article.featured)
+  const [newsData, setNewsData] = useState(defaultNewsData)
+
+  // Fetch news data from CMS
+  useEffect(() => {
+    async function fetchNewsData() {
+      try {
+        const response = await fetch('/content/home.json', {
+          cache: 'no-store',
+          headers: { 'Content-Type': 'application/json' }
+        })
+        
+        if (response.ok) {
+          const data = await response.json()
+          if (data.news) {
+            setNewsData(data.news)
+            console.log('✅ News data loaded from CMS')
+          }
+        }
+      } catch (error) {
+        console.warn('⚠️ Using default news data:', error)
+      }
+    }
+    
+    fetchNewsData()
+  }, [])
+
+  const articles = newsData.articles || []
+  const featured = articles.find(article => article.featured)
+  const others = articles.filter(article => !article.featured)
 
   const getText = (obj) => {
     if (typeof obj === 'string') return obj
     return obj?.[language] || obj?.id || obj?.en || ''
   }
 
-  const sectionTitle = language === 'id' ? 'Berita & Update' : 'News & Updates'
+  const sectionTitle = getText(newsData.title)
   const sectionSubtitle = language === 'id'
     ? 'Informasi terkini seputar perkembangan dan prestasi Diamond Group'
     : 'Latest information about Diamond Group developments and achievements'
@@ -106,7 +149,7 @@ export default function News() {
           {/* RIGHT SIDE - FIXED HEIGHT CONTAINER */}
           <div className="flex flex-col justify-between h-[420px] lg:h-[630px]">
 
-            {others.map((article, index) => (
+            {others.slice(0, 3).map((article, index) => (
               <motion.div
                 key={article.id}
                 initial={{ opacity: 0, x: 30 }}

@@ -3,11 +3,43 @@
 import { useState, useEffect, useRef } from 'react'
 import { motion, useMotionValue, animate } from 'framer-motion'
 import { Calendar, MapPin, ArrowRight } from 'lucide-react'
-import { events, formatEventDate } from '@/data/events'
 import { useLanguage } from '@/contexts/LanguageContext'
+
+// Default fallback data
+const defaultEventsData = {
+  title: { id: 'Event & Aktivitas', en: 'Events & Activities' },
+  list: [
+    {
+      id: 'event-1',
+      title: { id: 'Grand Launching The Kayana', en: 'Grand Launching The Kayana' },
+      description: { id: 'Peluncuran kawasan super premium dengan teknologi smart home dan fasilitas eksklusif.', en: 'Launch of super premium area with smart home technology and exclusive facilities.' },
+      date: '2025-09-15',
+      location: { id: 'The Kayana Sales Gallery, Kaliwates', en: 'The Kayana Sales Gallery, Kaliwates' },
+      image: 'https://images.unsplash.com/photo-1701589212546-2a1bcd94c5af?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzNTl8MHwxfHNlYXJjaHw0fHxwcm9wZXJ0eSUyMGxhdW5jaHxlbnwwfHx8fDE3NzIyNzc3MTR8MA&ixlib=rb-4.1.0&q=85',
+      type: { id: 'Peluncuran Proyek', en: 'Project Launch' },
+      status: 'upcoming'
+    }
+  ]
+}
+
+// Helper function to format date
+const formatEventDate = (dateString, locale = 'id') => {
+  const date = new Date(dateString)
+  const day = date.getDate()
+  const year = date.getFullYear()
+  const month = date.getMonth()
+  
+  const monthsID = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agt', 'Sep', 'Okt', 'Nov', 'Des']
+  const monthsEN = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+  
+  const monthName = locale === 'id' ? monthsID[month] : monthsEN[month]
+  
+  return `${day} ${monthName} ${year}`
+}
 
 export default function Events() {
   const { language } = useLanguage()
+  const [eventsData, setEventsData] = useState(defaultEventsData)
   const [cardsPerView, setCardsPerView] = useState(3)
   const [isMobile, setIsMobile] = useState(false)
   const [containerWidth, setContainerWidth] = useState(0)
@@ -15,31 +47,56 @@ export default function Events() {
   const containerRef = useRef(null)
   const x = useMotionValue(0)
 
+  // Fetch events data from CMS
+  useEffect(() => {
+    async function fetchEventsData() {
+      try {
+        const response = await fetch('/content/home.json', {
+          cache: 'no-store',
+          headers: { 'Content-Type': 'application/json' }
+        })
+        
+        if (response.ok) {
+          const data = await response.json()
+          if (data.events) {
+            setEventsData(data.events)
+            console.log('✅ Events data loaded from CMS')
+          }
+        }
+      } catch (error) {
+        console.warn('⚠️ Using default events data:', error)
+      }
+    }
+    
+    fetchEventsData()
+  }, [])
+
   // Get localized text
   const getText = (obj) => {
     if (typeof obj === 'string') return obj
     return obj?.[language] || obj?.id || obj?.en || ''
   }
 
-  const sectionTitle = language === 'id' ? 'Event & Aktivitas' : 'Events & Activities'
+  const sectionTitle = getText(eventsData.title)
   const viewAllText = language === 'id' ? 'Lihat Semua' : 'See All'
   const upcomingText = language === 'id' ? 'Akan Datang' : 'Upcoming'
   const ongoingText = language === 'id' ? 'Sedang Berlangsung' : 'Ongoing'
 
   // Show only first 3 events
+  const events = eventsData.list || []
   const displayedEvents = events.slice(0, 3)
 
   // Responsive cards per view
   useEffect(() => {
     const updateCardsPerView = () => {
       if (window.innerWidth < 768) {
-        setCardsPerView(1.35) // Mobile: 1 card utuh + 35% card berikutnya
+        setCardsPerView(1.35)
         setIsMobile(true)
       } else if (window.innerWidth < 1024) {
-        setCardsPerView(3) // Tablet: 3 cards
+        setCardsPerView(3)
         setIsMobile(false)
       } else {
-        setCardsPerView(3) // Desktop: 3 cards
+        setCardsPerView(3)
         setIsMobile(false)
       }
     }
@@ -77,15 +134,12 @@ export default function Events() {
     const currentX = x.get()
     const velocity = info.velocity.x
     
-    // Calculate which card we're closest to
     let targetIndex = Math.round(-currentX / (cardWidth + cardGap))
     
-    // Add velocity-based momentum
     if (Math.abs(velocity) > 500) {
       targetIndex += velocity > 0 ? -1 : 1
     }
     
-    // Constrain to valid range
     const maxIndex = displayedEvents.length - Math.floor(cardsPerView)
     targetIndex = Math.max(0, Math.min(targetIndex, maxIndex))
     
@@ -137,7 +191,7 @@ export default function Events() {
               >
                 {/* Simple Event Card */}
                 <div className="group cursor-pointer">
-                  {/* Image Container - Same height as Developments */}
+                  {/* Image Container */}
                   <div className="relative h-[280px] overflow-hidden rounded-lg shadow-sm hover:shadow-md transition-all duration-300">
                     <img
                       src={event.image}
@@ -166,7 +220,7 @@ export default function Events() {
                     </div>
                   </div>
 
-                  {/* Simple Content Below - No card overlap */}
+                  {/* Simple Content Below */}
                   <div className="mt-3 space-y-2">
                     {/* Title */}
                     <h3 className="text-base lg:text-lg font-medium text-gray-900 leading-tight group-hover:text-orange-600 transition-colors">
@@ -178,7 +232,7 @@ export default function Events() {
                       {getText(event.description)}
                     </p>
 
-                    {/* Event Details - Date and Location in one line */}
+                    {/* Event Details - Date and Location */}
                     <div className="flex items-center gap-3 text-xs text-gray-500 pt-1">
                       <div className="flex items-center gap-1.5">
                         <Calendar className="text-orange-600 flex-shrink-0" size={14} />
@@ -197,7 +251,7 @@ export default function Events() {
           </motion.div>
         </div>
 
-        {/* Mobile hint text - hanya tampil di mobile */}
+        {/* Mobile hint text */}
         {isMobile && (
           <motion.p
             initial={{ opacity: 0 }}

@@ -2,10 +2,45 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { motion, useInView } from 'framer-motion'
-import { corporateStatement, statistics } from '@/data/corporate'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { Shield, Heart, Lightbulb, ArrowRight } from 'lucide-react'
 import Link from 'next/link'
+
+// Default fallback data
+const defaultCorporate = {
+  headline: { id: 'Membangun Hunian Menumbuhkan Harapan', en: 'Building Homes, Growing Hope' },
+  description: { id: 'Dari hunian, Diamond Group secara konsisten mendorong inovasi kuat untuk membangun masa depan yang lebih baik.', en: 'From housing, Diamond Group consistently drives strong innovation to build a better future.' },
+  images: [
+    'https://images.unsplash.com/photo-1512917774080-9991f1c4c750',
+    'https://images.unsplash.com/photo-1564156280315-1d42b4651629',
+    'https://images.unsplash.com/photo-1602941525421-8f8b81d3edbb'
+  ],
+  values: {
+    id: [
+      { icon: 'Shield', label: 'Integritas' },
+      { icon: 'Heart', label: 'Loyalitas' },
+      { icon: 'Lightbulb', label: 'Inovasi' }
+    ],
+    en: [
+      { icon: 'Shield', label: 'Integrity' },
+      { icon: 'Heart', label: 'Loyalty' },
+      { icon: 'Lightbulb', label: 'Innovation' }
+    ]
+  }
+}
+
+const defaultStatistics = {
+  id: [
+    { label: 'Tahun', value: 10, suffix: '+' },
+    { label: 'Perumahan', value: 9, suffix: '' },
+    { label: 'Unit', value: 2500, suffix: '+' }
+  ],
+  en: [
+    { label: 'Years', value: 10, suffix: '+' },
+    { label: 'Housing', value: 9, suffix: '' },
+    { label: 'Units', value: 2500, suffix: '+' }
+  ]
+}
 
 function AnimatedCounter({ value, suffix = '', duration = 2000 }) {
   const [count, setCount] = useState(0)
@@ -83,14 +118,43 @@ function ImageCarousel({ images }) {
 
 export default function CorporateStatement() {
   const { language } = useLanguage()
+  const [corporateData, setCorporateData] = useState(defaultCorporate)
+  const [statisticsData, setStatisticsData] = useState(defaultStatistics)
+
+  // Fetch data from CMS
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await fetch('/content/home.json', {
+          cache: 'no-store',
+          headers: { 'Content-Type': 'application/json' }
+        })
+        
+        if (response.ok) {
+          const data = await response.json()
+          if (data.corporate) {
+            setCorporateData(data.corporate)
+          }
+          if (data.statistics) {
+            setStatisticsData(data.statistics)
+          }
+          console.log('✅ Corporate & Statistics data loaded from CMS')
+        }
+      } catch (error) {
+        console.warn('⚠️ Using default corporate data:', error)
+      }
+    }
+    
+    fetchData()
+  }, [])
 
   const getText = (obj) => {
     if (typeof obj === 'string') return obj
     return obj?.[language] || obj?.id || obj?.en || ''
   }
 
-  const stats = statistics[language] || statistics.id || []
-  const values = corporateStatement.values[language] || corporateStatement.values.id || []
+  const stats = statisticsData[language] || statisticsData.id || []
+  const values = corporateData.values[language] || corporateData.values.id || []
 
   const iconMap = {
     Shield,
@@ -145,11 +209,11 @@ export default function CorporateStatement() {
             >
               <div>
                 <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight">
-                  {getText(corporateStatement.headline)}
+                  {getText(corporateData.headline)}
                 </h2>
 
                 <p className="text-base lg:text-lg text-gray-600 leading-relaxed mt-6 max-w-xl">
-                  {getText(corporateStatement.description)}
+                  {getText(corporateData.description)}
                 </p>
               </div>
 
@@ -187,7 +251,7 @@ export default function CorporateStatement() {
               transition={{ duration: 0.8 }}
             >
               <div className="w-full aspect-[4/3] overflow-hidden rounded-xl">
-                <ImageCarousel images={corporateStatement.images} />
+                <ImageCarousel images={corporateData.images} />
               </div>
             </motion.div>
 

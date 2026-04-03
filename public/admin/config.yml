@@ -15,8 +15,8 @@ backend:
     uploadMedia: '📸 Upload "{{path}}"'
     deleteMedia: '🗑️ Delete media "{{path}}"'
 
-# Local development backend (uncomment untuk development)
-# local_backend: true
+# Local development backend (enabled untuk development)
+local_backend: true
 
 # Publishing Mode
 publish_mode: simple  # Langsung publish tanpa approval
