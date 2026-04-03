@@ -9,7 +9,7 @@ export default function VideoShowcase() {
   // Option 3: Use direct video URL - set videoType to 'url' and provide full video URL
   
   const videoType = 'file' // 'youtube' | 'file' | 'url'
-  const videoSource = 'the-kayana.mp4' // YouTube ID, filename (e.g., 'video-diamond.mp4'), or full URL
+  const videoSource = 'the-kayana.mp4'
   
   // Render video based on type
   const renderVideo = () => {
