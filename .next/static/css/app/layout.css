@@ -539,6 +539,15 @@ video {
   border-color: hsl(var(--border));
 }
 
+/* CRITICAL FIX: Reset margin and padding to prevent navbar positioning issues */
+
+html, body {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100%;
+    overflow-x: hidden;
+  }
+
 body{
   background-color: hsl(var(--background));
   color: hsl(var(--foreground));
@@ -797,6 +806,9 @@ html {
 .mt-20{
   margin-top: 5rem;
 }
+.mt-3{
+  margin-top: 0.75rem;
+}
 .mt-4{
   margin-top: 1rem;
 }
@@ -805,9 +817,6 @@ html {
 }
 .mt-8{
   margin-top: 2rem;
-}
-.mt-3{
-  margin-top: 0.75rem;
 }
 .line-clamp-1{
   overflow: hidden;
@@ -1046,6 +1055,9 @@ html {
 .max-w-xl{
   max-width: 36rem;
 }
+.max-w-sm{
+  max-width: 24rem;
+}
 .flex-1{
   flex: 1 1 0%;
 }
@@ -1084,11 +1096,11 @@ html {
 .animate-pulse{
   animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
-.cursor-pointer{
-  cursor: pointer;
-}
 .cursor-grab{
   cursor: grab;
+}
+.cursor-pointer{
+  cursor: pointer;
 }
 .select-none{
   -webkit-user-select: none;
@@ -1222,6 +1234,9 @@ html {
 }
 .overflow-y-auto{
   overflow-y: auto;
+}
+.overscroll-none{
+  overscroll-behavior: none;
 }
 .scroll-smooth{
   scroll-behavior: smooth;
@@ -1714,9 +1729,6 @@ html {
 .to-white{
   --tw-gradient-to: #fff var(--tw-gradient-to-position);
 }
-.to-orange-700{
-  --tw-gradient-to: #c2410c var(--tw-gradient-to-position);
-}
 .bg-cover{
   background-size: cover;
 }
@@ -1878,6 +1890,12 @@ html {
 }
 .pt-4{
   padding-top: 1rem;
+}
+.pb-12{
+  padding-bottom: 3rem;
+}
+.pt-24{
+  padding-top: 6rem;
 }
 .text-left{
   text-align: left;
@@ -2657,10 +2675,6 @@ html {
     margin-bottom: 2.5rem;
   }
 
-  .lg\:mb-12{
-    margin-bottom: 3rem;
-  }
-
   .lg\:mb-14{
     margin-bottom: 3.5rem;
   }
@@ -2916,7 +2930,6 @@ html {
     font-size: 15px;
   }
 }
-
 /*!***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[2].use[1]!./node_modules/next/dist/build/webpack/loaders/next-font-loader/index.js??ruleSet[1].rules[14].oneOf[2].use[2]!./node_modules/next/font/google/target.css?{"path":"app\\layout.js","import":"Inter","arguments":[{"subsets":["latin"],"weight":["300","400","500","600","700","800","900"],"variable":"--font-inter"}],"variableName":"inter"} ***!
   \***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/

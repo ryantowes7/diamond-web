@@ -55,9 +55,19 @@
   * {
     @apply border-border;
   }
+  
+  /* CRITICAL FIX: Reset margin and padding to prevent navbar positioning issues */
+  html, body {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100%;
+    overflow-x: hidden;
+  }
+  
   body {
     @apply bg-background text-foreground;
   }
+  
   html {
     scroll-behavior: smooth;
   }

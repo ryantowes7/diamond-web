@@ -23,6 +23,35 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  // Prevent body scroll when mobile menu is open - FIX for mobile scroll bug
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      // Save current scroll position
+      const scrollY = window.scrollY
+      document.body.style.position = 'fixed'
+      document.body.style.top = `-${scrollY}px`
+      document.body.style.width = '100%'
+      document.body.style.overflow = 'hidden'
+    } else {
+      // Restore scroll position
+      const scrollY = document.body.style.top
+      document.body.style.position = ''
+      document.body.style.top = ''
+      document.body.style.width = ''
+      document.body.style.overflow = ''
+      if (scrollY) {
+        window.scrollTo(0, parseInt(scrollY || '0') * -1)
+      }
+    }
+    
+    return () => {
+      document.body.style.position = ''
+      document.body.style.top = ''
+      document.body.style.width = ''
+      document.body.style.overflow = ''
+    }
+  }, [mobileMenuOpen])
+
   const handleNavigation = (href) => {
     if (href.startsWith('#')) {
       const element = document.querySelector(href)
@@ -61,15 +90,24 @@ export default function Navbar() {
 
   return (
     <>
+      {/* FIXED: Added inline style to ensure navbar sticks perfectly to top */}
       <motion.nav
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.5 }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.3 }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           scrolled
             ? 'bg-white shadow-md'
             : 'bg-black/20 backdrop-blur-sm'
         }`}
+        style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          margin: 0,
+          padding: 0
+        }}
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 lg:h-20">
@@ -295,18 +333,33 @@ export default function Navbar() {
         </div>
       </motion.nav>
 
-      {/* Mobile Menu Overlay */}
+      {/* Mobile Menu Overlay - FIXED: Improved scroll behavior */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
             initial={{ opacity: 0, x: '100%' }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: '100%' }}
-            transition={{ type: 'tween', duration: 0.3 }}
+            transition={{ type: 'tween', duration: 0.2 }}
             className="fixed inset-0 z-40 lg:hidden"
+            style={{ 
+              position: 'fixed',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              overscrollBehavior: 'none',
+              WebkitOverflowScrolling: 'touch'
+            }}
           >
-            <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-orange-900 to-black overflow-y-auto">
-              <div className="flex flex-col items-center justify-start min-h-full space-y-6 px-8 py-24">
+            <div 
+              className="absolute inset-0 bg-gradient-to-br from-gray-900 via-orange-900 to-black overflow-y-auto overscroll-none"
+              style={{ 
+                overscrollBehavior: 'contain',
+                WebkitOverflowScrolling: 'touch'
+              }}
+            >
+              <div className="flex flex-col items-center justify-start min-h-full space-y-6 px-8 pt-24 pb-12">
                 {links.map((link, index) => {
                   const isProjectLink = link.href === '/proyek'
                   
@@ -321,7 +374,7 @@ export default function Navbar() {
                         >
                           {link.label}
                         </motion.div>
-                        <div className="max-h-64 overflow-y-auto space-y-2">
+                        <div className="space-y-2 max-w-sm mx-auto">
                           {projectsList.map((project, subIndex) => (
                             <motion.button
                               key={project.id}

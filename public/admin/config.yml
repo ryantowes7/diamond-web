@@ -1,0 +1,389 @@
+# ===================================================================
+# DIAMOND GROUP CMS CONFIGURATION
+# Decap CMS with GitHub Backend for Vercel Deployment
+# ===================================================================
+
+# Backend Configuration
+backend:
+  name: github
+  repo: ryantowes7/diamond-web  # ⚠️ GANTI dengan repo GitHub Anda (format: username/repo-name)
+  branch: main
+  commit_messages:
+    create: '✨ Create {{collection}} "{{slug}}"'
+    update: '📝 Update {{collection}} "{{slug}}"'
+    delete: '🗑️ Delete {{collection}} "{{slug}}"'
+    uploadMedia: '📸 Upload "{{path}}"'
+    deleteMedia: '🗑️ Delete media "{{path}}"'
+
+# Local development backend (uncomment untuk development)
+# local_backend: true
+
+# Publishing Mode
+publish_mode: simple  # Langsung publish tanpa approval
+
+# Media Configuration
+media_folder: "public/uploads"
+public_folder: "/uploads"
+
+# Site Configuration
+site_url: https://diamond-web-liard.vercel.app/  # ⚠️ GANTI dengan URL Vercel Anda
+display_url: https://diamond-web-liard.vercel.app/
+logo_url: /logo-diamond-gold.png
+
+# Editor Configuration
+editor:
+  preview: true
+
+# Collections
+collections:
+  # ===================================================================
+  # 🏠 HOME PAGE CONTENT
+  # ===================================================================
+  - name: "home"
+    label: "🏠 Halaman Home"
+    delete: false
+    editor:
+      preview: true
+    files:
+      - file: "public/content/home.json"
+        label: "Home Content"
+        name: "home"
+        fields:
+          # ========== HERO SECTION ==========
+          - label: "🎬 Hero Section"
+            name: "hero"
+            widget: "object"
+            collapsed: false
+            fields:
+              - label: "Video Background URL"
+                name: "videoUrl"
+                widget: "string"
+                hint: "URL video background (format .mp4). Gunakan link dari CDN atau hosting video."
+                
+              - label: "Fallback Image"
+                name: "fallbackImage"
+                widget: "image"
+                hint: "Gambar yang ditampilkan jika video gagal dimuat atau untuk mobile"
+                
+              - label: "📄 Konten Bahasa Indonesia"
+                name: "id"
+                widget: "object"
+                collapsed: false
+                fields:
+                  - label: "Headline Utama"
+                    name: "headline"
+                    widget: "string"
+                    hint: "Judul besar hero section (contoh: Membangun Hunian Menumbuhkan Harapan)"
+                    
+                  - label: "Subheadline"
+                    name: "subheadline"
+                    widget: "text"
+                    hint: "Deskripsi pendukung di bawah headline"
+                    
+                  - label: "Call-to-Action Buttons"
+                    name: "ctas"
+                    widget: "list"
+                    max: 2
+                    min: 1
+                    summary: "{{fields.label}}"
+                    fields:
+                      - label: "Label Button"
+                        name: "label"
+                        widget: "string"
+                        hint: "Teks yang tampil di button (contoh: Jelajahi Proyek Kami)"
+                        
+                      - label: "Link Tujuan"
+                        name: "href"
+                        widget: "string"
+                        hint: "ID section (#proyek) atau URL (/tentang-kami)"
+                        
+                      - label: "Variant Button"
+                        name: "variant"
+                        widget: "select"
+                        options:
+                          - { label: "Primary (Orange/Red)", value: "primary" }
+                          - { label: "Secondary (Transparent)", value: "secondary" }
+                        default: "primary"
+                        
+              - label: "🌐 Konten Bahasa Inggris"
+                name: "en"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - { label: "Headline", name: "headline", widget: "string" }
+                  - { label: "Subheadline", name: "subheadline", widget: "text" }
+                  - label: "Call-to-Action Buttons"
+                    name: "ctas"
+                    widget: "list"
+                    max: 2
+                    summary: "{{fields.label}}"
+                    fields:
+                      - { label: "Button Label", name: "label", widget: "string" }
+                      - { label: "Link", name: "href", widget: "string" }
+                      - label: "Variant"
+                        name: "variant"
+                        widget: "select"
+                        options: ["primary", "secondary"]
+                        
+          # ========== CORPORATE STATEMENT ==========
+          - label: "🏢 Corporate Statement"
+            name: "corporate"
+            widget: "object"
+            collapsed: true
+            fields:
+              - label: "Headline"
+                name: "headline"
+                widget: "object"
+                fields:
+                  - { label: "Indonesia", name: "id", widget: "string", default: "Membangun Hunian Menumbuhkan Harapan" }
+                  - { label: "English", name: "en", widget: "string", default: "Building Homes, Growing Hope" }
+                  
+              - label: "Description"
+                name: "description"
+                widget: "object"
+                fields:
+                  - label: "Indonesia"
+                    name: "id"
+                    widget: "text"
+                    default: "Dari hunian, Diamond Group secara konsisten mendorong inovasi kuat untuk membangun masa depan yang lebih baik."
+                  - label: "English"
+                    name: "en"
+                    widget: "text"
+                    default: "From housing, Diamond Group consistently drives strong innovation to build a better future."
+                    
+              - label: "Gambar Carousel"
+                name: "images"
+                widget: "list"
+                max: 3
+                min: 1
+                hint: "Upload 3 gambar untuk carousel otomatis"
+                field:
+                  label: "Image URL"
+                  name: "image"
+                  widget: "image"
+                  
+              - label: "Core Values"
+                name: "values"
+                widget: "object"
+                fields:
+                  - label: "Indonesia"
+                    name: "id"
+                    widget: "list"
+                    max: 3
+                    fields:
+                      - label: "Icon"
+                        name: "icon"
+                        widget: "select"
+                        options: ["Shield", "Heart", "Lightbulb", "Award", "Users", "Star"]
+                        hint: "Pilih icon yang sesuai"
+                      - { label: "Label", name: "label", widget: "string", hint: "Contoh: Integritas, Loyalitas, Inovasi" }
+                      
+                  - label: "English"
+                    name: "en"
+                    widget: "list"
+                    max: 3
+                    fields:
+                      - label: "Icon"
+                        name: "icon"
+                        widget: "select"
+                        options: ["Shield", "Heart", "Lightbulb", "Award", "Users", "Star"]
+                      - { label: "Label", name: "label", widget: "string", hint: "Example: Integrity, Loyalty, Innovation" }
+                      
+          # ========== STATISTICS ==========
+          - label: "📊 Statistics"
+            name: "statistics"
+            widget: "object"
+            collapsed: true
+            fields:
+              - label: "Indonesia"
+                name: "id"
+                widget: "list"
+                max: 4
+                summary: "{{fields.label}}: {{fields.value}}{{fields.suffix}}"
+                fields:
+                  - { label: "Label", name: "label", widget: "string", hint: "Contoh: Tahun Pengalaman" }
+                  - { label: "Nilai", name: "value", widget: "number", hint: "Angka statistik (contoh: 10)" }
+                  - { label: "Suffix", name: "suffix", widget: "string", required: false, hint: "Tambahan seperti + atau %" }
+                  
+              - label: "English"
+                name: "en"
+                widget: "list"
+                max: 4
+                summary: "{{fields.label}}: {{fields.value}}{{fields.suffix}}"
+                fields:
+                  - { label: "Label", name: "label", widget: "string", hint: "Example: Years of Experience" }
+                  - { label: "Value", name: "value", widget: "number" }
+                  - { label: "Suffix", name: "suffix", widget: "string", required: false }
+                  
+          # ========== NEWS SECTION ==========
+          - label: "📰 News Section"
+            name: "news"
+            widget: "object"
+            collapsed: true
+            fields:
+              - label: "Section Title"
+                name: "title"
+                widget: "object"
+                fields:
+                  - { label: "Indonesia", name: "id", widget: "string", default: "Berita & Update" }
+                  - { label: "English", name: "en", widget: "string", default: "News & Updates" }
+                  
+              - label: "Articles"
+                name: "articles"
+                widget: "list"
+                summary: "{{fields.title.id}}"
+                hint: "Daftar berita/artikel. Maksimal 4 ditampilkan di homepage"
+                fields:
+                  - { label: "ID Artikel", name: "id", widget: "string", hint: "ID unik (contoh: news-001)" }
+                  
+                  - label: "Title"
+                    name: "title"
+                    widget: "object"
+                    fields:
+                      - { label: "Indonesia", name: "id", widget: "string" }
+                      - { label: "English", name: "en", widget: "string" }
+                      
+                  - label: "Excerpt"
+                    name: "excerpt"
+                    widget: "object"
+                    fields:
+                      - { label: "Indonesia", name: "id", widget: "text" }
+                      - { label: "English", name: "en", widget: "text" }
+                      
+                  - label: "Category"
+                    name: "category"
+                    widget: "object"
+                    fields:
+                      - { label: "Indonesia", name: "id", widget: "string", hint: "Contoh: Berita Perusahaan" }
+                      - { label: "English", name: "en", widget: "string", hint: "Example: Company News" }
+                      
+                  - label: "Date"
+                    name: "date"
+                    widget: "date"
+                    format: "YYYY-MM-DD"
+                    
+                  - label: "Image"
+                    name: "image"
+                    widget: "image"
+                    
+                  - label: "Featured"
+                    name: "featured"
+                    widget: "boolean"
+                    default: false
+                    hint: "Tampilkan sebagai berita utama?"
+                    
+          # ========== EVENTS SECTION ==========
+          - label: "🎉 Events Section"
+            name: "events"
+            widget: "object"
+            collapsed: true
+            fields:
+              - label: "Section Title"
+                name: "title"
+                widget: "object"
+                fields:
+                  - { label: "Indonesia", name: "id", widget: "string", default: "Event & Aktivitas" }
+                  - { label: "English", name: "en", widget: "string", default: "Events & Activities" }
+                  
+              - label: "Event List"
+                name: "list"
+                widget: "list"
+                summary: "{{fields.title.id}}"
+                hint: "Daftar event/acara. Maksimal 4 ditampilkan di homepage"
+                fields:
+                  - { label: "ID Event", name: "id", widget: "string", hint: "ID unik (contoh: event-001)" }
+                  
+                  - label: "Title"
+                    name: "title"
+                    widget: "object"
+                    fields:
+                      - { label: "Indonesia", name: "id", widget: "string" }
+                      - { label: "English", name: "en", widget: "string" }
+                      
+                  - label: "Description"
+                    name: "description"
+                    widget: "object"
+                    fields:
+                      - { label: "Indonesia", name: "id", widget: "text" }
+                      - { label: "English", name: "en", widget: "text" }
+                      
+                  - { label: "Date", name: "date", widget: "date", format: "YYYY-MM-DD" }
+                  
+                  - label: "Location"
+                    name: "location"
+                    widget: "object"
+                    fields:
+                      - { label: "Indonesia", name: "id", widget: "string", hint: "Contoh: Jember, Jawa Timur" }
+                      - { label: "English", name: "en", widget: "string", hint: "Example: Jember, East Java" }
+                      
+                  - { label: "Image", name: "image", widget: "image" }
+                  
+                  - label: "Type"
+                    name: "type"
+                    widget: "object"
+                    fields:
+                      - { label: "Indonesia", name: "id", widget: "string", hint: "Contoh: Grand Opening" }
+                      - { label: "English", name: "en", widget: "string", hint: "Example: Grand Opening" }
+                      
+                  - label: "Status"
+                    name: "status"
+                    widget: "select"
+                    options:
+                      - { label: "Mendatang", value: "upcoming" }
+                      - { label: "Sedang Berlangsung", value: "ongoing" }
+                      - { label: "Selesai", value: "completed" }
+                    default: "upcoming"
+
+  # ===================================================================
+  # ⚙️ SITE SETTINGS
+  # ===================================================================
+  - name: "settings"
+    label: "⚙️ Pengaturan Website"
+    delete: false
+    editor:
+      preview: false
+    files:
+      - file: "public/content/settings.json"
+        label: "Site Settings"
+        name: "settings"
+        fields:
+          - label: "Site Title"
+            name: "siteTitle"
+            widget: "string"
+            hint: "Judul website untuk SEO"
+            
+          - label: "Site Description"
+            name: "siteDescription"
+            widget: "text"
+            hint: "Deskripsi website untuk SEO"
+            
+          - label: "Contact Email"
+            name: "contactEmail"
+            widget: "string"
+            pattern: ['^[w-.]+@([w-]+.)+[w-]{2,4}$', 'Must be a valid email']
+            
+          - label: "Contact Phone"
+            name: "contactPhone"
+            widget: "string"
+            hint: "Format: +62 331 123456"
+            
+          - label: "WhatsApp Number"
+            name: "whatsappNumber"
+            widget: "string"
+            hint: "Format: 628123456789 (tanpa + dan spasi)"
+            pattern: ['^62[0-9]{9,12}$', 'Format: 628123456789']
+            
+          - label: "Address"
+            name: "address"
+            widget: "text"
+            hint: "Alamat lengkap kantor"
+            
+          - label: "Social Media Links"
+            name: "socialMedia"
+            widget: "object"
+            fields:
+              - { label: "Facebook", name: "facebook", widget: "string", required: false, hint: "URL lengkap Facebook page" }
+              - { label: "Instagram", name: "instagram", widget: "string", required: false, hint: "URL lengkap Instagram profile" }
+              - { label: "Twitter", name: "twitter", widget: "string", required: false, hint: "URL lengkap Twitter profile" }
+              - { label: "LinkedIn", name: "linkedin", widget: "string", required: false, hint: "URL lengkap LinkedIn company page" }
+              - { label: "YouTube", name: "youtube", widget: "string", required: false, hint: "URL lengkap YouTube channel" }
