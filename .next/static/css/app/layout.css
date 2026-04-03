@@ -959,9 +959,6 @@ html {
 .h-screen{
   height: 100vh;
 }
-.max-h-64{
-  max-height: 16rem;
-}
 .min-h-full{
   min-height: 100%;
 }
@@ -1052,11 +1049,11 @@ html {
 .max-w-7xl{
   max-width: 80rem;
 }
-.max-w-xl{
-  max-width: 36rem;
-}
 .max-w-sm{
   max-width: 24rem;
+}
+.max-w-xl{
+  max-width: 36rem;
 }
 .flex-1{
   flex: 1 1 0%;
@@ -1861,6 +1858,9 @@ html {
   padding-top: 2rem;
   padding-bottom: 2rem;
 }
+.pb-12{
+  padding-bottom: 3rem;
+}
 .pb-20{
   padding-bottom: 5rem;
 }
@@ -1885,17 +1885,14 @@ html {
 .pt-16{
   padding-top: 4rem;
 }
+.pt-24{
+  padding-top: 6rem;
+}
 .pt-32{
   padding-top: 8rem;
 }
 .pt-4{
   padding-top: 1rem;
-}
-.pb-12{
-  padding-bottom: 3rem;
-}
-.pt-24{
-  padding-top: 6rem;
 }
 .text-left{
   text-align: left;
