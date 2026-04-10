@@ -23,24 +23,15 @@ export const footerLinks = {
     { label: 'Profil Diamond Group', href: '/tentang-kami' },
     { label: 'Visi & Misi', href: '/tentang-kami#visi-misi' },
     { label: 'Manajemen', href: '#' },
-    { label: 'Karir', href: '#' },
   ],
   projects: [
     { label: 'Semua Proyek', href: '/proyek' },
     { label: 'Komersial', href: '/proyek?type=commercial' },
-    { label: 'Residensial', href: '/proyek?type=residential' },
-    { label: 'Township', href: '/proyek?type=township' },
-  ],
-  investor: [
-    { label: 'Investor Relations', href: '#' },
-    { label: 'Laporan Tahunan', href: '#' },
-    { label: 'Corporate Governance', href: '#' },
-    { label: 'Sustainability Report', href: '#' },
+    { label: 'KPR Subsidi', href: '/proyek?type=subsidi' },
   ],
   contact: [
-    { label: 'Hubungi Kami', href: '/kontak' },
     { label: 'Marketing Office', href: '#' },
-    { label: 'Media Relations', href: '#' },
+    { label: 'Tim Marketing', href: '/kontak' },
   ]
 }
 
