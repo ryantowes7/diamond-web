@@ -348,7 +348,14 @@ export default function ProyekPage() {
                     </div>
                     
                     <Button
-                      onClick={() => window.location.href = `/proyek#${project.id}`}
+                      onClick={() => {
+                        // Route to specific project page if available, otherwise scroll to project
+                        if (project.id === 'diamond-city') {
+                          window.location.href = `/proyek/diamond-city`
+                        } else {
+                          window.location.href = `/proyek#${project.id}`
+                        }
+                      }}
                       className="w-full bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 text-white rounded-xl py-6 font-semibold shadow-md hover:shadow-lg transition-all"
                     >
                       {texts.exploreMore}
@@ -430,12 +437,19 @@ export default function ProyekPage() {
                   </div>
 
                   <Button
-                    onClick={() => window.location.href = `/proyek#${project.id}`}
-                    size="sm"
-                    className="w-full bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 text-white rounded-lg py-2 text-sm font-semibold shadow-sm hover:shadow-md transition-all"
-                  >
-                    {texts.exploreMore}
-                  </Button>
+                      onClick={() => {
+                        // Route to specific project page if available, otherwise scroll to project
+                        if (project.id === 'diamond-city') {
+                          window.location.href = `/proyek/diamond-city`
+                        } else {
+                          window.location.href = `/proyek#${project.id}`
+                        }
+                      }}
+                      className="w-full bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 text-white rounded-xl py-6 font-semibold shadow-md hover:shadow-lg transition-all"
+                    >
+                      {texts.exploreMore}
+                      <ArrowRight className="ml-2" size={18} />
+                    </Button>
                 </div>
               </motion.div>
             ))}

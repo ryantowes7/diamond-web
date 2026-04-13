@@ -187,7 +187,7 @@ export default function Developments() {
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
                   className="flex-shrink-0"
                   style={{ 
                     width: `calc(${100 / cardsPerView}% - ${(cardsPerView - 1) * (isMobile ? 20 : 24) / cardsPerView}px)` 
@@ -239,6 +239,13 @@ export default function Developments() {
                           
                           {/* CTA Icon Only */}
                           <button 
+                            onClick={() => {
+                              if (dev.id === 'diamond-city') {
+                                window.location.href = '/proyek/diamond-city'
+                              } else {
+                                window.location.href = `/proyek#${dev.id}`
+                              }
+                            }}
                             className="group/cta text-orange-600 hover:text-orange-700 transition-colors duration-300"
                             aria-label={`Lihat detail ${getText(dev.name)}`}
                           >
